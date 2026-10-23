@@ -1,0 +1,36 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.vercel/
+.DS_Store
+*.tsbuildinfo
+playwright-report/
+test-results/
+ios/App/App/public/
+ios/App/Pods/
+ios/App/build/
+*.xcuserstate
+xcuserdata/
+native/MidiParser/.build/
+artifacts/
+
+supabase/.temp/
+
+native/PianoAudio/.build/
+
+# Personal signing, credentials, and local exports
+*.p12
+*.pfx
+*.pem
+*.key
+*.mobileprovision
+*.provisionprofile
+*.ipa
+*.xcarchive/
+marketing/tiktok/*.mp4
+
+# Private deployment metadata and personal handover notes
+.openai/
+docs/LOCAL-HANDOVER.md
