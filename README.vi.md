@@ -6,6 +6,8 @@
 
 Bạn có thể tải mã, chạy trên máy, fork, sửa và phát triển phiên bản của mình theo giấy phép [MIT](LICENSE). Mỗi bản triển khai tự cấu hình dịch vụ và tài khoản riêng.
 
+[![Build and test](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml/badge.svg)](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml)
+
 ## Chạy nhanh — không cần tài khoản cloud
 
 Cần Node.js 22.12+ và npm.
@@ -91,3 +93,7 @@ Xem [lộ trình học](docs/COURSE.vi.md), [renderer video quảng bá](marketi
 Fork repo, tạo nhánh, sửa mã và gửi pull request. Chạy các kiểm tra phù hợp trước khi gửi; không đính kèm dữ liệu người dùng hoặc credentials trong mã, ảnh chụp hay logs. Không thay phiên bản dependencies nếu thay đổi của bạn không cần tới.
 
 Mã nguồn và nội dung gốc trong repo được phát hành theo [MIT](LICENSE). Các dependencies giữ giấy phép riêng; xem [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Không có dịch vụ cloud trả phí, tài khoản nhà phát triển Apple hoặc quyền dùng thương hiệu bên thứ ba đi kèm.
+
+## Cộng đồng và hướng phát triển
+
+Xem [hướng dẫn đóng góp](CONTRIBUTING.md), [quy tắc ứng xử](CODE_OF_CONDUCT.md), [báo cáo bảo mật](SECURITY.md), [kiến trúc](docs/ARCHITECTURE.md) và [roadmap](docs/ROADMAP.md). Các tài liệu cộng đồng này dùng tiếng Anh. Dự án còn ở giai đoạn đầu; roadmap là công việc dự kiến, không phải tuyên bố về lượng người dùng hoặc tài trợ.

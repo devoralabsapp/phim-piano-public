@@ -6,6 +6,8 @@ An open-source piano learning app built with React, TypeScript, and Vite, with a
 
 Clone, run, fork, modify, and build your own version under the [MIT license](LICENSE). Each deployment uses its own accounts and optional cloud services.
 
+[![Build and test](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml/badge.svg)](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml)
+
 ## Quick start — no cloud account required
 
 Requires Node.js 22.12+ and npm. A `.nvmrc` is included for nvm users.
@@ -93,3 +95,7 @@ See the [course guide](docs/COURSE.md) and [promo-video renderer](marketing/tikt
 Fork the repository, create a branch, make changes, and open a pull request. Run relevant checks before submitting. Do not include user data or credentials in code, screenshots, or logs. Keep dependency versions unchanged unless your change requires otherwise.
 
 Original code and content are released under [MIT](LICENSE). Dependencies retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Cloud subscriptions, Apple developer accounts, and rights to third-party brands are not included.
+
+## Community and project direction
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md), the [Code of Conduct](CODE_OF_CONDUCT.md), and [SECURITY.md](SECURITY.md). Explore the [architecture](docs/ARCHITECTURE.md), [roadmap](docs/ROADMAP.md), and [maintainer workflow](docs/MAINTAINER-WORKFLOW.md). [AGENTS.md](AGENTS.md) provides repository guidance for coding tools. This is an early-stage project; roadmap items describe proposed work rather than adoption or funding claims.

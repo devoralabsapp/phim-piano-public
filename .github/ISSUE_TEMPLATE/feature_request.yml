@@ -1,0 +1,23 @@
+name: Feature request
+description: Propose a focused improvement for learners or maintainers.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Who is affected and what is difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed improvement
+      description: Explain the intended behavior, alternatives, and scope.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: How could we validate it?
+      description: Include language, accessibility, browser/device, or privacy considerations.
