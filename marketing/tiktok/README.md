@@ -1,8 +1,10 @@
-# Dựng video giới thiệu Phím
+# Render a Phím promo video
 
-Repo cung cấp renderer, ảnh bìa và caption mẫu. Video dựng sẵn chứa địa chỉ triển khai riêng không nằm trong bản public. Bạn có thể dựng video của mình và thay `example.com` trong renderer/caption bằng địa chỉ của bạn.
+**English** | [Tiếng Việt](README.vi.md)
 
-Cần Node.js 22.12+, FFmpeg có libx264 và Chromium của Playwright. Trong repo:
+This folder contains a renderer, cover image, and Vietnamese caption template. Existing promotional content remains Vietnamese. The renderer explicitly selects Vietnamese without changing the app's English default. A pre-rendered video tied to a private deployment is not included. Replace `example.com` in the renderer/caption with your own URL.
+
+Requires Node.js 22.12+, FFmpeg with libx264, and Playwright Chromium:
 
 ```sh
 npm ci
@@ -10,10 +12,10 @@ npx playwright install chromium
 npm run dev -- --port 5173
 ```
 
-Trong terminal khác:
+In a second terminal:
 
 ```sh
 node scripts/build-promo-video.mjs
 ```
 
-Có thể cấu hình `FFMPEG_BIN` và `PROMO_OUTPUT_DIR`. Ảnh/âm thanh trung gian nằm trong `artifacts/tiktok/`; nhạc piano được tổng hợp bởi script, không dùng bản thu bên thứ ba.
+Set `FFMPEG_BIN` or `PROMO_OUTPUT_DIR` if needed. Intermediate screenshots/audio go to `artifacts/tiktok/`. The script synthesizes its own piano audio rather than using a third-party recording.

@@ -24,7 +24,7 @@ function initialLocale(): Locale {
   try {
     return parseLocale(localStorage.getItem(languageKey));
   } catch {
-    return "vi";
+    return "en";
   }
 }
 export function LanguageProvider({ children }: { children: ReactNode }) {

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../vietnamese-fixture";
 
 test("sound check generates audible samples and translates its status", async ({
   page,

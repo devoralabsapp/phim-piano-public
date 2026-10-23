@@ -3,7 +3,7 @@ export type Locale = "vi" | "en";
 export type TranslationParams = Record<string, string | number>;
 export const languageKey = "phim:language";
 export function parseLocale(value: unknown): Locale {
-  return value === "en" ? "en" : "vi";
+  return value === "vi" ? "vi" : "en";
 }
 export function translate(
   locale: Locale,

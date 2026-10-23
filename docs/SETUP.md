@@ -1,30 +1,32 @@
-# Cấu hình tài khoản Google và triển khai
+# Google sign-in and deployment setup
 
-Mỗi người tự tạo tài khoản, project Supabase và hosting của mình. Không có backend production hoặc tài khoản dùng chung đi kèm mã nguồn. Chế độ khách không cần dịch vụ cloud.
+**English** | [Tiếng Việt](SETUP.vi.md)
+
+Create your own Supabase project and hosting accounts. No shared production backend or account is included. Guest mode works without cloud services.
 
 ## Supabase
 
-1. Tạo project Supabase trong tài khoản của bạn.
-2. Chạy lần lượt `supabase/migrations/202610140001_practice_sessions.sql`, `supabase/migrations/202610140002_extended_course.sql` `supabase/migrations/202610140003_practice_assessments.sql` và `supabase/migrations/202610140004_session_privileges.sql` qua SQL Editor hoặc Supabase CLI. Nếu đã có database, chạy các migration chưa áp dụng theo thứ tự: migration thứ hai cho 24 bài mới, migration thứ ba cho thư viện, đọc nhạc, đánh giá đầu vào và kết quả tiết tấu; migration thứ tư chỉ giữ quyền SELECT/INSERT/UPDATE/DELETE cho tài khoản. Với project mới có thể chạy một lần `supabase/setup/new-project.sql` thay cho các migration riêng. Bảng bật Row Level Security; mỗi người chỉ đọc/ghi buổi luyện của chính mình.
-3. Lấy Project URL và publishable/anon key. Sao chép `.env.example` thành `.env.local` và điền `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`. Đây là key công khai cho client, không dùng service-role key.
-4. Authentication → URL Configuration: đặt Site URL bằng URL Vercel production; thêm redirect `https://YOUR-DOMAIN/auth/callback`, `http://localhost:5173/auth/callback`, `com.phim.piano://auth/callback`. Chỉ cho phép các preview URL bạn thực sự dùng, không mở wildcard cho mọi dự án Vercel.
+1. Create a project in your own Supabase account.
+2. For a new database, run `supabase/setup/new-project.sql` once in SQL Editor, **or** apply the four files in `supabase/migrations/` in filename order. For an existing database, apply only missing migrations. The schema enables Row Level Security so users can access only their own practice sessions. The later migrations add lesson/assessment IDs and restrict table privileges.
+3. Copy `.env.example` to `.env.local`. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` to your project URL and anon/publishable key. Never use a service-role key in the client.
+4. Under Authentication → URL Configuration, set Site URL to your deployment URL. Allow your web callback (`https://YOUR-DOMAIN/auth/callback`), `http://localhost:5173/auth/callback`, and `com.phim.piano://auth/callback`. Allow only the preview deployments you actually use.
+
+`supabase/config.toml` contains local callback examples. Before applying it to your own cloud project, review Site URL and redirect settings for your deployment. Do not apply it to someone else's project.
 
 ## Google Cloud
 
-1. Tạo/chọn project Google Cloud. Trong Google Auth Platform, thiết lập Branding/Audience. Khi còn Testing, thêm email của bạn và người thử vào Test users.
-2. Tạo OAuth Client ID loại **Web application**.
-3. Authorized redirect URI: `https://YOUR-PROJECT.supabase.co/auth/v1/callback` (lấy giá trị chính xác từ trang provider Google trong Supabase).
-4. Nhập Client ID và Client Secret vào Supabase → Authentication → Sign In / Providers → Google rồi bật provider. Secret chỉ lưu ở Supabase, không commit Git hay thêm vào biến VITE_.
-5. Kiểm tra đăng nhập, đăng xuất và đăng nhập tài khoản khác. PKCE được dùng trên web và iOS; trên iOS, Browser mở màn hình OAuth ngoài WKWebView rồi quay về qua URL scheme.
+1. Select or create a Google Cloud project. Configure Google Auth Platform branding/audience, and add test users while the app is in Testing.
+2. Create an OAuth client of type **Web application**.
+3. Use `https://YOUR-PROJECT.supabase.co/auth/v1/callback` as the authorized redirect URI; copy the exact URL from your Supabase Google provider settings.
+4. Enter the Google Client ID and Client Secret directly in Supabase's Google provider settings and enable it. Keep the secret in Supabase, outside Git and `VITE_` variables.
+5. Test sign-in, sign-out, and account switching. The app uses PKCE on web and iOS. The iOS app opens OAuth in an external browser and returns through its URL scheme.
 
-## GitHub và Vercel
+## GitHub and Vercel
 
-1. Fork repository này hoặc tạo repository riêng của bạn. Không push `.env.local` hoặc token.
-2. Vercel → Add New Project → chọn repo. Framework Vite; build `npm run build`; output `dist`; Node 22.
-3. Thêm hai biến `VITE_SUPABASE_URL` và `VITE_SUPABASE_ANON_KEY` cho Production/Preview theo nhu cầu rồi deploy. Đây là biến build-time; đổi cấu hình cần redeploy.
-4. Thêm URL Vercel chính xác vào allowlist redirect của Supabase.
-5. Google login phải được thử bằng tài khoản thật. Build thành công không xác nhận OAuth đã hoạt động.
+1. Fork this repository or create your own. Never push local environment files or tokens.
+2. Import it into Vercel using the Vite preset, `npm run build`, `dist`, and Node 22.
+3. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` for the environments you use. These are build-time values; rebuild after changing them.
+4. Add the exact deployed callback URL to your Supabase redirect allowlist.
+5. Verify Google sign-in with a real account. A successful build does not prove OAuth or cross-device sync works.
 
-Tài liệu: https://supabase.com/docs/guides/auth/social-login/auth-google · https://supabase.com/docs/guides/auth/native-mobile-deep-linking · https://vercel.com/docs/frameworks/frontend/vite
-
-`supabase/config.toml` chỉ chứa ví dụ callback local. Khi deploy, thêm domain của chính bạn vào Site URL/redirect allowlist. Không áp dụng cấu hình này vào project của người khác.
+References: [Google OAuth](https://supabase.com/docs/guides/auth/social-login/auth-google), [native deep links](https://supabase.com/docs/guides/auth/native-mobile-deep-linking), [Vite on Vercel](https://vercel.com/docs/frameworks/frontend/vite).

@@ -13,6 +13,7 @@ const ui = await browser.newPage({
   isMobile: true,
   hasTouch: true,
 });
+await ui.addInitScript(() => localStorage.setItem("phim:language", "vi"));
 await ui.goto("http://127.0.0.1:5173");
 await ui.evaluate(() => document.fonts.ready);
 await ui.screenshot({ path: `${dir}/home.png` });

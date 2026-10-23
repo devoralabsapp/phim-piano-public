@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../vietnamese-fixture";
 test("all levels are available in both languages without losing original progress", async ({
   page,
 }) => {

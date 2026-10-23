@@ -1,42 +1,52 @@
-# Chạy Phím trên iPad/iPhone từ Xcode
+# Run Phím on iPad or iPhone with Xcode
 
-Dự án: `ios/App/App.xcodeproj`. Bundle ID: `org.example.phimpiano`; iOS tối thiểu 15.0. Mã UI được đóng gói trong ứng dụng, không tải website Vercel để chạy. CoreMIDI là phần Swift native.
+**English** | [Tiếng Việt](IOS.vi.md)
 
-## Trên Mac
+Project: `ios/App/App.xcodeproj`; scheme: **App**; minimum iOS: 15.0. Web assets are bundled locally; the app does not depend on a hosted website to render. MIDI uses native Swift CoreMIDI.
 
-1. Cài Xcode phù hợp với phiên bản iOS trên iPad/iPhone của bạn và Node.js 22.12 trở lên.
-2. Trong thư mục repo, chạy `npm ci`, cấu hình `.env.local` như `docs/SETUP.md`, rồi `npm run ios:sync`.
-3. Chạy `npm run ios:open` hoặc mở `ios/App/App.xcodeproj`.
-4. Xcode → App target → Signing & Capabilities: chọn Team Apple của bạn, bật Automatically manage signing. Thay Bundle Identifier mẫu `org.example.phimpiano` bằng ID riêng của bạn; cập nhật đồng thời `capacitor.config.ts` và target Xcode. URL scheme OAuth vẫn là `com.phim.piano` trừ khi đổi đồng thời trong mã auth và Supabase allowlist.
-5. Cắm iPad/iPhone vào Mac, bật Developer Mode khi iOS yêu cầu, chọn thiết bị và Run. Tài khoản Apple cá nhân có giới hạn thời hạn signing; phát hành TestFlight cần Apple Developer Program.
-6. Khi sửa web hoặc đổi biến môi trường, chạy `npm run ios:sync` trước khi build lại.
+## Set up on your Mac
 
-## Kết nối Yamaha YDP-163
+1. Install Xcode compatible with your device's iOS version and Node.js 22.12+.
+2. Run `npm ci`. If you want cloud features, configure `.env.local` using [SETUP.md](SETUP.md). Run `npm run ios:sync`.
+3. Run `npm run ios:open` or open the project directly.
+4. In Signing & Capabilities, choose your Apple Team and automatic signing. Replace the sample bundle ID `org.example.phimpiano` in both `capacitor.config.ts` and the Xcode target with your own ID.
+5. Keep the OAuth scheme `com.phim.piano` unless you also update the auth code, Info.plist, and Supabase allowlist. Its callback is `com.phim.piano://auth/callback`; it intentionally differs from the bundle ID.
+6. Connect your device, enable Developer Mode when requested, select it, and Run. Personal Apple accounts have signing limitations; TestFlight requires Apple Developer Program membership.
+7. After web or environment changes, run `npm run ios:sync` before rebuilding.
 
-- iPad Pro M2: USB-B (cổng USB TO HOST trên đàn) → USB-C, dây có truyền dữ liệu.
-- iPhone 11 Pro Max: USB-B → USB-A và Apple Lightning to USB Camera Adapter/USB 3 Camera Adapter. Cấp nguồn cho adapter nếu thiết bị yêu cầu.
-- Bật đàn, mở Phím → Phòng luyện tập/Tài khoản & kết nối → Kết nối đàn MIDI.
-- Chọn bài học và chế độ “Đàn MIDI”; bấm Bắt đầu luyện. Đúng nốt/đúng quãng tám sẽ chuyển sang nhóm tiếp theo. Với hợp âm, nhấn mới và giữ đủ các nốt đồng thời, rồi nhả trước nhóm tiếp theo. Velocity 0 được xử lý như note-off; plugin hỗ trợ running status, packet phân mảnh và cắm/rút thiết bị.
-- Chế độ **Chấm tiết tấu** có đếm vào nhịp và báo sớm/trễ, thiếu/dư nốt; thời gian giữ phím dùng note-off. Chưa chấm pedal, tư thế hoặc sắc thái.
-- Micro là tùy chọn trong chế độ chấm tiết tấu, chỉ xin quyền khi bật; nhận từng nốt, xử lý tại thiết bị và không thu/tải âm thanh. Info.plist đã có mô tả quyền. Cần thử quyền/âm thanh trên iPad/iPhone thật; dùng tai nghe và MIDI khi chơi hợp âm.
+The app starts in English on a new installation. Choose **Tiếng Việt** from the language selector to use Vietnamese; the preference is saved.
 
-## Kiểm tra trước khi sử dụng thật
+## Connect a Yamaha YDP-163
 
-- Build simulator: `xcodebuild -project ios/App/App.xcodeproj -scheme App -sdk iphonesimulator -configuration Debug -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build`.
-- Kiểm tra Google OAuth quay lại app, tiến độ đồng bộ sau restart, note-on/off, nhả phím, chấm sớm/trễ và rút/cắm dây trên đàn thật. Kiểm tra quyền micro, nhận từng nốt, dừng micro ở nền và phát video hoạt họa.
-- CI macOS đã build simulator thành công và chạy qua 4 test parser Swift. Ký IPA và thử USB MIDI vẫn cần Mac/tài khoản Apple và thiết bị thật.
+- USB-C iPad: connect the piano's USB TO HOST (USB-B) port with a data-capable USB-C cable/adapter.
+- Lightning iPhone: use USB-B to USB-A plus an appropriate Lightning USB camera adapter, with power if needed.
+- Open **Practice room** or **Account & connections**, then connect MIDI. Start a lesson in MIDI mode.
+- Match the note and octave. For chords, press and hold every note together, then release before the next group. Velocity-zero messages are treated as note-off; the parser supports running status, fragmented packets, and hot-plugging.
+- Rhythm scoring includes a count-in and early/late, missing/extra-note, and MIDI hold-time feedback. It does not assess pedal, posture, or expression.
 
-Tài liệu: https://capacitorjs.com/docs/ios · https://capacitorjs.com/docs/ios/custom-code · https://developer.apple.com/documentation/coremidi
+The microphone is optional single-note input, processed on the device without recording/uploading audio. Permission is requested when enabled. Test permission behavior on a real device and use MIDI for chords.
 
-## Kiểm tra âm thanh native
+## Build and hardware checks
 
-Phím màn hình, Nghe mẫu và máy đếm nhịp trên iOS dùng AVAudioPlayer với các nốt PCM tổng hợp tại thiết bị. Không cần quyền micro để nghe âm thanh; chỉ bật chế độ ghi/phát khi bạn chủ động bật luyện micro. Web vẫn dùng Web Audio.
+```sh
+xcodebuild -project ios/App/App.xcodeproj -scheme App -sdk iphonesimulator \
+  -configuration Debug -destination 'generic/platform=iOS Simulator' \
+  CODE_SIGNING_ALLOWED=NO build
+swift test --package-path native/MidiParser
+swift test --package-path native/PianoAudio
+```
 
-Sau khi `git pull --ff-only`, `npm ci`, `npm run ios:sync` và Run lại trong Xcode:
+Test Google OAuth returning to the app, progress after restart, cross-device sync, note-on/off, cable disconnect/reconnect, rhythm latency, microphone release in the background, and technique video playback. A simulator build or unit test does not replace these physical-device checks.
 
-1. Mở **Tài khoản & kết nối → Kiểm tra âm thanh → Phát thử âm thanh**.
-2. Xác nhận **Bộ phát: ios-native-v2**, xem **Âm lượng** và **Đầu ra**. Nếu không có mục này thì bản trên máy chưa chứa thay đổi mới.
-3. Nghe ba nốt Đô–Mi–Sol, thử phím màn hình, Nghe mẫu, máy đếm nhịp, hợp âm và bật/tắt micro. Thử loa, tai nghe, im lặng và chuyển nền/quay lại app.
-4. Nếu vẫn im tiếng, gửi nội dung Bộ phát/Âm lượng/Đầu ra và dòng lỗi nếu có. Build CI và kiểm thử PCM không thay thế việc nghe trên thiết bị thật.
+## Native sound check
 
-Kiểm thử tổng hợp PCM: `swift test --package-path native/PianoAudio`.
+iOS keys, playback, and the metronome use AVAudioPlayer with synthesized PCM notes. Listening does not require microphone permission. The app enables recording/playback mode only when microphone practice is enabled; the web version uses Web Audio.
+
+After syncing and installing the current build:
+
+1. Open **Account & connections → Sound check** and play the test sound.
+2. Confirm the backend is **ios-native-v2** and check the volume and output route.
+3. Listen for C–E–G, then test screen keys, playback, chords, and the metronome. Test speakers/headphones, silent mode, background/foreground transitions, and microphone on/off.
+4. If audio is silent, include the backend, volume, output route, and diagnostic error when reporting it. Never include account tokens or user practice data.
+
+References: [Capacitor iOS](https://capacitorjs.com/docs/ios), [custom native code](https://capacitorjs.com/docs/ios/custom-code), [CoreMIDI](https://developer.apple.com/documentation/coremidi).

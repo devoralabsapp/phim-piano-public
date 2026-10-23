@@ -3,9 +3,10 @@ import { translate, parseLocale, beatLabel } from "../src/lib/locale";
 import { english } from "../src/lib/locales/en";
 import { lessons, noteName } from "../src/lib/curriculum";
 describe("language support", () => {
-  it("keeps Vietnamese as the default and rejects unsupported preferences", () => {
-    expect(parseLocale(null)).toBe("vi");
-    expect(parseLocale("fr")).toBe("vi");
+  it("defaults to English while preserving an explicit Vietnamese preference", () => {
+    expect(parseLocale(null)).toBe("en");
+    expect(parseLocale("fr")).toBe("en");
+    expect(parseLocale("vi")).toBe("vi");
     expect(parseLocale("en")).toBe("en");
     expect(translate("vi", "Tổng quan")).toBe("Tổng quan");
   });

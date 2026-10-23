@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../vietnamese-fixture";
 test("English translates every page and persists after reload", async ({
   page,
 }) => {

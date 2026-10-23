@@ -9,11 +9,11 @@ export default function LanguageSwitcher() {
         value={locale}
         onChange={(e) => setLocale(e.target.value === "en" ? "en" : "vi")}
       >
-        <option value="vi" lang="vi">
-          Tiếng Việt
-        </option>
         <option value="en" lang="en">
           English
+        </option>
+        <option value="vi" lang="vi">
+          Tiếng Việt
         </option>
       </select>
     </label>

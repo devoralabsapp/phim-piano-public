@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../vietnamese-fixture";
 test("library filters, notation and hand isolation work in both languages", async ({
   page,
 }) => {

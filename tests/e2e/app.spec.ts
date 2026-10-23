@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../vietnamese-fixture";
 test("lesson feedback, quiz and persistence after refresh", async ({
   page,
 }) => {
