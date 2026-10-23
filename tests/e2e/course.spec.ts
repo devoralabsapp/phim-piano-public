@@ -1,3 +1,4 @@
+import { selectLanguage } from "../language-helper";
 import { test, expect } from "../vietnamese-fixture";
 test("all levels are available in both languages without losing original progress", async ({
   page,
@@ -30,7 +31,7 @@ test("all levels are available in both languages without losing original progres
   await expect(
     page.getByRole("button", { name: /Étude tổng hợp/ }),
   ).toBeVisible();
-  await page.getByLabel("Ngôn ngữ", { exact: true }).selectOption("en");
+  await selectLanguage(page, "en");
   await expect(
     page.getByRole("heading", { name: "Advanced", exact: true }),
   ).toBeVisible();

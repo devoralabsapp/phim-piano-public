@@ -1480,19 +1480,105 @@ footer button {
   border: 0;
 }
 .language-switch {
+  position: relative;
   display: inline-flex;
   flex-shrink: 0;
 }
-.language-switch select {
-  min-height: 40px;
-  max-width: 115px;
-  padding: 8px 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: white;
+.language-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid #dce5dd;
+  border-radius: 12px;
+  background: #fff;
+  color: #334c3e;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 1px 2px #29382f05;
+}
+.language-trigger:hover,
+.language-trigger[aria-expanded="true"] {
+  border-color: #9cb9a6;
+  background: #f3f7f2;
+}
+.language-globe {
+  color: #6b8674;
+}
+.language-chevron {
+  color: #819586;
+  transition: transform 0.15s;
+}
+.language-trigger[aria-expanded="true"] .language-chevron {
+  transform: rotate(180deg);
+}
+.language-menu {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 216px;
+  max-width: calc(100vw - 32px);
+  padding: 7px;
+  border: 1px solid #e1e8df;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow:
+    0 12px 32px #29382f18,
+    0 2px 6px #29382f08;
+}
+.language-menu-title {
+  margin: 0;
+  padding: 8px 10px 10px;
+  color: #859287;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  min-height: 48px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  background: transparent;
+  color: #4e5e52;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+}
+.language-option:hover,
+.language-option:focus-visible {
+  background: #f4f7f2;
+}
+.language-option[aria-checked="true"] {
+  background: #edf4ec;
   color: var(--green);
-  font-size: 11px;
-  cursor: pointer;
+}
+.language-code {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border: 1px solid #e3e9e0;
+  border-radius: 8px;
+  background: #fff;
+  color: #7a8c7c;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.language-option[aria-checked="true"] .language-code {
+  border-color: #d1e1d0;
+  color: var(--green);
+}
+.language-check {
+  margin-left: auto;
 }
 .modal-language {
   display: flex;
@@ -1511,9 +1597,11 @@ html[lang="en"] .tagline {
   .topbar > div {
     gap: 10px;
   }
-  .language-switch select {
-    font-size: 10px;
-    max-width: 105px;
+  .language-trigger {
+    min-height: 40px;
+    gap: 7px;
+    padding: 9px 10px;
+    font-size: 11px;
   }
   html[lang="en"] .sidebar nav button {
     white-space: normal;

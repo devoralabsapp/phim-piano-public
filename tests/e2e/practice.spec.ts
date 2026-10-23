@@ -1,3 +1,4 @@
+import { selectLanguage } from "../language-helper";
 import { test, expect } from "../vietnamese-fixture";
 test("library filters, notation and hand isolation work in both languages", async ({
   page,
@@ -20,7 +21,7 @@ test("library filters, notation and hand isolation work in both languages", asyn
   await expect(
     d.getByText("Đang luyện một phần.", { exact: false }),
   ).toBeVisible();
-  await d.getByLabel("Ngôn ngữ", { exact: true }).selectOption("en");
+  await selectLanguage(d, "en");
   await expect(
     d.getByRole("heading", { name: "Garden waltz", exact: true }),
   ).toBeVisible();

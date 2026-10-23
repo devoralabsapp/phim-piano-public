@@ -1,3 +1,4 @@
+import { selectLanguage } from "../language-helper";
 import { test, expect } from "../vietnamese-fixture";
 
 test("sound check generates audible samples and translates its status", async ({
@@ -47,7 +48,7 @@ test("sound check generates audible samples and translates its status", async ({
       ),
     )
     .toBeGreaterThan(0);
-  await page.getByLabel("Ngôn ngữ", { exact: true }).selectOption("en");
+  await selectLanguage(page, "en");
   await expect(
     page.getByRole("heading", { name: "Sound check", exact: true }),
   ).toBeVisible();

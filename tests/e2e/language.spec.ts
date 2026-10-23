@@ -1,9 +1,10 @@
+import { selectLanguage } from "../language-helper";
 import { test, expect } from "../vietnamese-fixture";
 test("English translates every page and persists after reload", async ({
   page,
 }) => {
   await page.goto("/");
-  await page.getByLabel("Ngôn ngữ", { exact: true }).selectOption("en");
+  await selectLanguage(page, "en");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await expect(page).toHaveTitle("Phím · Learn piano every day");
   await expect(
@@ -32,9 +33,11 @@ test("English translates every page and persists after reload", async ({
     page.getByRole("button", { name: "Continue with Google" }),
   ).toBeVisible();
   await page.reload();
-  await expect(page.getByLabel("Language", { exact: true })).toHaveValue("en");
+  await expect(
+    page.getByRole("button", { name: "Language", exact: true }),
+  ).toContainText("English");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await page.getByLabel("Language", { exact: true }).selectOption("vi");
+  await selectLanguage(page, "vi");
   await expect(
     page.getByRole("heading", { name: "Một chút piano, mỗi ngày." }),
   ).toBeVisible();
@@ -49,7 +52,7 @@ test("switching language in a running lesson preserves notes, timer, quiz and sa
   for (const note of ["C4", "D4", "E4"])
     await d.getByRole("button", { name: note, exact: true }).click();
   await expect(d.locator(".next-note strong")).toContainText("Fa");
-  await d.getByLabel("Ngôn ngữ", { exact: true }).selectOption("en");
+  await selectLanguage(d, "en");
   await expect(
     d.getByRole("heading", { name: "Getting to know the keys" }),
   ).toBeVisible();
@@ -66,10 +69,10 @@ test("switching language in a running lesson preserves notes, timer, quiz and sa
   await d
     .getByRole("button", { name: "To the left of two black keys" })
     .click();
-  await d.getByLabel("Language", { exact: true }).selectOption("vi");
+  await selectLanguage(d, "vi");
   await expect(d.getByRole("button", { name: "Hoàn thành bài" })).toBeEnabled();
   await d.getByRole("button", { name: "Hoàn thành bài" }).click();
-  await page.getByLabel("Ngôn ngữ", { exact: true }).selectOption("en");
+  await selectLanguage(page, "en");
   await page
     .getByRole("button", { name: "Your progress", exact: true })
     .click();
@@ -92,7 +95,7 @@ test("daily practice language changes keep the session running", async ({
   const d = page.getByRole("dialog");
   await d.getByRole("button", { name: "Bắt đầu luyện", exact: true }).click();
   await expect(d.locator(".daily-clock")).toContainText("14:59");
-  await d.getByLabel("Ngôn ngữ", { exact: true }).selectOption("en");
+  await selectLanguage(d, "en");
   await expect(
     d.getByRole("heading", { name: "Today's practice" }),
   ).toBeVisible();
