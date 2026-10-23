@@ -6,6 +6,8 @@ An open-source piano learning app built with React, TypeScript, and Vite, with a
 
 Clone, run, fork, modify, and build your own version under the [MIT license](LICENSE). Each deployment uses its own accounts and optional cloud services.
 
+**[Live demo](https://phimpiano.devoralabs.tech/)** — try the maintainer-hosted app, or follow the steps below to run your own instance. The hosted deployment may differ from the latest public commit.
+
 [![Build and test](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml/badge.svg)](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml)
 
 ## Quick start — no cloud account required

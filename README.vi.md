@@ -6,6 +6,8 @@
 
 Bạn có thể tải mã, chạy trên máy, fork, sửa và phát triển phiên bản của mình theo giấy phép [MIT](LICENSE). Mỗi bản triển khai tự cấu hình dịch vụ và tài khoản riêng.
 
+**[Dùng thử trực tuyến](https://phimpiano.devoralabs.tech/)** — mở bản do maintainer vận hành, hoặc làm theo hướng dẫn dưới đây để chạy bản riêng. Website có thể khác commit mới nhất của repo public.
+
 [![Build and test](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml/badge.svg)](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml)
 
 ## Chạy nhanh — không cần tài khoản cloud
