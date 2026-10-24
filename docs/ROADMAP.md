@@ -1,6 +1,6 @@
 # Roadmap and ways to help
 
-Phím is an early-stage open-source project. These are proposed areas of work, not completed features or release-date commitments. Start with a small issue describing the expected behavior and how to validate it.
+Piano Sprout is an early-stage open-source project. These are proposed areas of work, not completed features or release-date commitments. Start with a small issue describing the expected behavior and how to validate it.
 
 ## Small, self-contained contributions
 

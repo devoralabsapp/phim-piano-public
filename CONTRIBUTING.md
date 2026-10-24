@@ -1,4 +1,4 @@
-# Contributing to Phím
+# Contributing to Piano Sprout
 
 Thanks for helping make piano practice more accessible. Contributions are welcome in English or Vietnamese. English is the default language of the app and repository documentation; keep Vietnamese support intact.
 

@@ -86,16 +86,16 @@ export const english: Record<string, string> = {
   "Đang kết nối…": "Connecting…",
   "Ngắt kết nối": "Disconnect",
   "Kết nối đàn MIDI": "Connect MIDI piano",
-  "Trình duyệt này chưa hỗ trợ MIDI. Trên iPad/iPhone, dùng bản Phím iOS để kết nối đàn.":
-    "This browser does not support MIDI. On iPad or iPhone, use the Phím iOS app to connect your piano.",
+  "Trình duyệt này chưa hỗ trợ MIDI. Trên iPad/iPhone, dùng bản Piano Sprout iOS để kết nối đàn.":
+    "This browser does not support MIDI. On iPad or iPhone, use the Piano Sprout iOS app to connect your piano.",
   "iPad Pro M2: USB-B → USB-C truyền dữ liệu.":
     "iPad Pro M2: USB-B → USB-C data cable.",
   "iPhone 11 Pro Max: USB-B → USB-A + Lightning Camera Adapter.":
     "iPhone 11 Pro Max: USB-B → USB-A + Lightning Camera Adapter.",
   "Đang bấm:": "Playing:",
   " · ": " · ",
-  "Phím — Tổng quan": "Phím — Overview",
-  phím: "phím",
+  "Phím — Tổng quan": "Piano Sprout — Overview",
+  phím: "Piano Sprout",
   "TỪNG PHÍM ĐÀN, MỘT NIỀM VUI": "ONE KEY AT A TIME, ONE MOMENT OF JOY",
   "✧ Chậm thôi, nhưng đều đặn.": "✧ Take it slowly. Keep showing up.",
   "15 phút mỗi ngày là khởi đầu tốt để đôi tay làm quen với piano.":
@@ -178,7 +178,7 @@ export const english: Record<string, string> = {
   "Chấm MIDI hiện kiểm tra cao độ từng nốt; nhịp và tư thế cần tự luyện theo hướng dẫn.":
     "MIDI feedback checks individual note pitches. Practice rhythm and posture using the instructions.",
   "Phím không sử dụng micro để nghe tiếng đàn.":
-    "Phím does not use the microphone to listen to your piano.",
+    "Piano Sprout does not use the microphone to listen to your piano.",
   "Bạn đang dùng bản ứng dụng iOS.": "You are using the iOS app.",
   "Bạn đang dùng phiên bản web.": "You are using the web version.",
   "Đặt tay lên phím đàn. Dành một chút thời gian cho chính mình.":
@@ -407,8 +407,8 @@ export const english: Record<string, string> = {
     "Progress is saved on this device. Sync will be retried the next time you open the app.",
   "Không lưu được tiến độ.": "Unable to save your progress.",
   "Chưa đồng bộ được dữ liệu nhập.": "Unable to sync the imported progress.",
-  "Safari chưa hỗ trợ MIDI. Hãy dùng ứng dụng Phím iOS hoặc trình duyệt hỗ trợ Web MIDI trên máy tính.":
-    "Safari does not support MIDI. Use the Phím iOS app or a browser with Web MIDI support on a computer.",
+  "Safari chưa hỗ trợ MIDI. Hãy dùng ứng dụng Piano Sprout iOS hoặc trình duyệt hỗ trợ Web MIDI trên máy tính.":
+    "Safari does not support MIDI. Use the Piano Sprout iOS app or a browser with Web MIDI support on a computer.",
   Sol: "G",
   Mi: "E",
   Fa: "F",
@@ -420,7 +420,7 @@ export const english: Record<string, string> = {
   "Ngôn ngữ": "Language",
   "Tiếng Việt": "Tiếng Việt",
   English: "English",
-  "Phím · Học piano mỗi ngày": "Phím · Learn piano every day",
+  "Học piano mỗi ngày": "Learn piano every day",
   "Học piano mỗi ngày với bài luyện có hướng dẫn, máy đếm nhịp và Yamaha MIDI trên iOS.":
     "Learn piano every day with guided practice, a metronome, and Yamaha MIDI on iOS.",
 };

@@ -48,7 +48,7 @@ for (const kind of ["five-fingers", "thumb-crossing", "both-hands"]) {
         c.fillRect(0, 0, 960, 540);
         c.fillStyle = "#315440";
         c.font = "600 24px sans-serif";
-        c.fillText("phím. / PIANO TECHNIQUE", 52, 52);
+        c.fillText("Piano Sprout / PIANO TECHNIQUE", 52, 52);
         c.font = "600 36px sans-serif";
         c.fillText(
           kind === "five-fingers"

@@ -91,11 +91,11 @@ small {
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   font-family: Manrope, sans-serif;
-  font-size: 35px;
+  font-size: 24px;
   font-weight: 800;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   background: none;
   padding: 0;
   color: #2c4334;
@@ -103,7 +103,7 @@ small {
 }
 .brand > span:last-child {
   color: #7c967d;
-  margin-left: -11px;
+  margin-left: -7px;
 }
 .brand-mark {
   display: flex;
@@ -1229,7 +1229,7 @@ footer button {
     border-bottom: 1px solid var(--line);
   }
   .brand {
-    font-size: 29px;
+    font-size: 25px;
   }
   .brand-mark {
     height: 25px;

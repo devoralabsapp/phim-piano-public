@@ -1,4 +1,4 @@
-# Run Phím on iPad or iPhone with Xcode
+# Run Piano Sprout on iPad or iPhone with Xcode
 
 **English** | [Tiếng Việt](IOS.vi.md)
 

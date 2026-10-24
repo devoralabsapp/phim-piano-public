@@ -6,7 +6,7 @@ test("English translates every page and persists after reload", async ({
   await page.goto("/");
   await selectLanguage(page, "en");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page).toHaveTitle("Phím · Learn piano every day");
+  await expect(page).toHaveTitle("Piano Sprout · Learn piano every day");
   await expect(
     page.getByRole("heading", { name: "A little piano, every day." }),
   ).toBeVisible();

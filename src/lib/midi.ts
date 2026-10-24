@@ -66,7 +66,7 @@ export async function connectMidi(
   ).requestMIDIAccess;
   if (!request)
     throw new Error(
-      "Safari chưa hỗ trợ MIDI. Hãy dùng ứng dụng Phím iOS hoặc trình duyệt hỗ trợ Web MIDI trên máy tính.",
+      "Safari chưa hỗ trợ MIDI. Hãy dùng ứng dụng Piano Sprout iOS hoặc trình duyệt hỗ trợ Web MIDI trên máy tính.",
     );
   const access = await request.call(navigator);
   const refresh = () => {

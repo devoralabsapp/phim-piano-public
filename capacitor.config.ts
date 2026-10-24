@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from "@capacitor/cli";
 const config: CapacitorConfig = {
   appId: "org.example.phimpiano",
-  appName: "Phím",
+  appName: "Piano Sprout",
   webDir: "dist",
   ios: { contentInset: "never" },
 };

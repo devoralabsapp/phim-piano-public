@@ -8,7 +8,7 @@ Each deployment is responsible for its own hosting, Supabase project, OAuth conf
 
 ## Report a vulnerability privately
 
-Use [GitHub private vulnerability reporting](https://github.com/devoralabsapp/phim-piano-public/security/advisories/new). Include the affected commit, minimal reproduction using synthetic data, expected/actual behavior, impact, and a suggested fix if available.
+Use [GitHub private vulnerability reporting](https://github.com/devoralabsapp/piano-sprout/security/advisories/new). Include the affected commit, minimal reproduction using synthetic data, expected/actual behavior, impact, and a suggested fix if available.
 
 Do not open a public issue containing exploit details, credentials, personal data, or practice logs. If the private reporting form is unavailable, do not publish sensitive details; use GitHub's reporting/support channels to resolve access first. Ordinary non-security bugs belong in Issues.
 

@@ -1,6 +1,6 @@
 [English](IOS.md) | **Tiếng Việt**
 
-# Chạy Phím trên iPad/iPhone từ Xcode
+# Chạy Piano Sprout trên iPad/iPhone từ Xcode
 
 Dự án: `ios/App/App.xcodeproj`. Bundle ID: `org.example.phimpiano`; iOS tối thiểu 15.0. Mã UI được đóng gói trong ứng dụng, không tải website Vercel để chạy. CoreMIDI là phần Swift native.
 
@@ -17,7 +17,7 @@ Dự án: `ios/App/App.xcodeproj`. Bundle ID: `org.example.phimpiano`; iOS tối
 
 - iPad Pro M2: USB-B (cổng USB TO HOST trên đàn) → USB-C, dây có truyền dữ liệu.
 - iPhone 11 Pro Max: USB-B → USB-A và Apple Lightning to USB Camera Adapter/USB 3 Camera Adapter. Cấp nguồn cho adapter nếu thiết bị yêu cầu.
-- Bật đàn, mở Phím → Phòng luyện tập/Tài khoản & kết nối → Kết nối đàn MIDI.
+- Bật đàn, mở Piano Sprout → Phòng luyện tập/Tài khoản & kết nối → Kết nối đàn MIDI.
 - Chọn bài học và chế độ “Đàn MIDI”; bấm Bắt đầu luyện. Đúng nốt/đúng quãng tám sẽ chuyển sang nhóm tiếp theo. Với hợp âm, nhấn mới và giữ đủ các nốt đồng thời, rồi nhả trước nhóm tiếp theo. Velocity 0 được xử lý như note-off; plugin hỗ trợ running status, packet phân mảnh và cắm/rút thiết bị.
 - Chế độ **Chấm tiết tấu** có đếm vào nhịp và báo sớm/trễ, thiếu/dư nốt; thời gian giữ phím dùng note-off. Chưa chấm pedal, tư thế hoặc sắc thái.
 - Micro là tùy chọn trong chế độ chấm tiết tấu, chỉ xin quyền khi bật; nhận từng nốt, xử lý tại thiết bị và không thu/tải âm thanh. Info.plist đã có mô tả quyền. Cần thử quyền/âm thanh trên iPad/iPhone thật; dùng tai nghe và MIDI khi chơi hợp âm.
@@ -32,7 +32,7 @@ Tài liệu: https://capacitorjs.com/docs/ios · https://capacitorjs.com/docs/io
 
 ## Kiểm tra âm thanh native
 
-Phím màn hình, Nghe mẫu và máy đếm nhịp trên iOS dùng AVAudioPlayer với các nốt PCM tổng hợp tại thiết bị. Không cần quyền micro để nghe âm thanh; chỉ bật chế độ ghi/phát khi bạn chủ động bật luyện micro. Web vẫn dùng Web Audio.
+Piano Sprout màn hình, Nghe mẫu và máy đếm nhịp trên iOS dùng AVAudioPlayer với các nốt PCM tổng hợp tại thiết bị. Không cần quyền micro để nghe âm thanh; chỉ bật chế độ ghi/phát khi bạn chủ động bật luyện micro. Web vẫn dùng Web Audio.
 
 Sau khi `git pull --ff-only`, `npm ci`, `npm run ios:sync` và Run lại trong Xcode:
 

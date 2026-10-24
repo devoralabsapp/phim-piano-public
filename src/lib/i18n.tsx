@@ -1,3 +1,4 @@
+import { appName } from "./brand";
 import {
   createContext,
   useContext,
@@ -31,7 +32,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocale] = useState<Locale>(initialLocale);
   useEffect(() => {
     document.documentElement.lang = locale;
-    document.title = translate(locale, "Phím · Học piano mỗi ngày");
+    document.title = `${appName} · ${translate(locale, "Học piano mỗi ngày")}`;
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute(

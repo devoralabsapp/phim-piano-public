@@ -121,8 +121,8 @@ export const practiceEnglish: Record<string, string> = {
   "Mở bản nhạc": "Open score",
   "Không tìm thấy bài phù hợp.": "No matching pieces found.",
   "Bài nhạc tự biên soạn": "Original composition",
-  "Giai điệu cổ điển/dân gian · bản luyện giản lược do Phím biên soạn":
-    "Classical/traditional melody · simplified practice arrangement by Phím",
+  "Giai điệu cổ điển/dân gian · bản luyện giản lược do Piano Sprout biên soạn":
+    "Classical/traditional melody · simplified practice arrangement by Piano Sprout",
   "Dân ca Pháp": "French traditional",
   "Dân ca Anh": "English traditional",
   "Dân ca": "Traditional",
@@ -149,8 +149,8 @@ export const practiceEnglish: Record<string, string> = {
   "Waltz trong khu vườn": "Garden waltz",
   "Khúc đêm · bè và tiết tấu": "Night piece · voices and rhythm",
   "Video minh họa kỹ thuật": "Technique illustration videos",
-  "Video hoạt họa do Phím biên soạn, minh họa thứ tự ngón và phối hợp tay. Không phải video giáo viên biểu diễn.":
-    "Original Phím animations illustrating fingering and hand coordination. These are not teacher performance videos.",
+  "Video hoạt họa do Piano Sprout biên soạn, minh họa thứ tự ngón và phối hợp tay. Không phải video giáo viên biểu diễn.":
+    "Original Piano Sprout animations illustrating fingering and hand coordination. These are not teacher performance videos.",
   "Năm ngón tay phải": "Right-hand five-finger pattern",
   "Luồn ngón cái": "Thumb crossing",
   "Ghép hai tay": "Combine both hands",

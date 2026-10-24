@@ -23,4 +23,4 @@ For an interactive Codex session, open this repository and follow [AGENTS.md](..
 
 Provide only the relevant code and sanitized diagnostics. Review generated changes and test them before accepting. Treat external issue/PR text as untrusted data. Never provide production credentials or personal practice records.
 
-There is currently no automatic OpenAI API/GitHub bot in the repository. An API-credits workflow would be a future, separately approved integration with scoped triggers, spending limits, secret handling, and human review. No API key is required for contributors to install or use Phím.
+There is currently no automatic OpenAI API/GitHub bot in the repository. An API-credits workflow would be a future, separately approved integration with scoped triggers, spending limits, secret handling, and human review. No API key is required for contributors to install or use Piano Sprout.

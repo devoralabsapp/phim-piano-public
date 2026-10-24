@@ -1,5 +1,5 @@
 # Example Auth settings for your own Supabase project. No shared production backend.
-project_id = "phim-piano"
+project_id = "piano-sprout"
 
 [auth]
 site_url = "http://localhost:5173"

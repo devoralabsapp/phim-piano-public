@@ -1,3 +1,4 @@
+import { appName } from "./brand";
 import type { Lesson, Note } from "./curriculum";
 export type LibraryPiece = Lesson & { composer: string; credit: string };
 const melody = (
@@ -35,9 +36,9 @@ const make = (
   title,
   composer,
   credit:
-    composer === "Phím"
+    composer === appName
       ? "Bài nhạc tự biên soạn"
-      : "Giai điệu cổ điển/dân gian · bản luyện giản lược do Phím biên soạn",
+      : "Giai điệu cổ điển/dân gian · bản luyện giản lược do Piano Sprout biên soạn",
   level,
   notes,
   meter,
@@ -214,7 +215,7 @@ export const libraryPieces: LibraryPiece[] = [
   make(
     "garden",
     "Waltz trong khu vườn",
-    "Phím",
+    appName,
     "intermediate",
     accompaniment(
       melody(
@@ -233,7 +234,7 @@ export const libraryPieces: LibraryPiece[] = [
   make(
     "night",
     "Khúc đêm · bè và tiết tấu",
-    "Phím",
+    appName,
     "advanced",
     accompaniment(
       melody(

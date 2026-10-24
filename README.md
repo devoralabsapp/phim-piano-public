@@ -1,4 +1,4 @@
-# Phím — learn piano every day
+# Piano Sprout — learn piano every day
 
 **English** | [Tiếng Việt](README.vi.md)
 
@@ -8,20 +8,22 @@ Clone, run, fork, modify, and build your own version under the [MIT license](LIC
 
 **[Live demo](https://phimpiano.devoralabs.tech/)** — try the maintainer-hosted app, or follow the steps below to run your own instance. The hosted deployment may differ from the latest public commit.
 
-[![Build and test](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml/badge.svg)](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml)
+[![Build and test](https://github.com/devoralabsapp/piano-sprout/actions/workflows/checks.yml/badge.svg)](https://github.com/devoralabsapp/piano-sprout/actions/workflows/checks.yml)
 
 ## Quick start — no cloud account required
 
 Requires Node.js 22.12+ and npm. A `.nvmrc` is included for nvm users.
 
 ```sh
-git clone https://github.com/devoralabsapp/phim-piano-public.git
-cd phim-piano-public
+git clone https://github.com/devoralabsapp/piano-sprout.git
+cd piano-sprout
 npm ci
 npm run dev
 ```
 
 Open **http://localhost:5173**. Without environment variables, the app runs in **guest mode** and stores progress in your browser. Supabase, Vercel, and Google accounts are optional. Clearing browser storage may erase guest progress; use the JSON practice-log export to keep a copy.
+
+![Piano Sprout — English desktop preview](docs/screenshots/piano-sprout.png)
 
 ## Features
 
@@ -101,3 +103,5 @@ Original code and content are released under [MIT](LICENSE). Dependencies retain
 ## Community and project direction
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md), the [Code of Conduct](CODE_OF_CONDUCT.md), and [SECURITY.md](SECURITY.md). Explore the [architecture](docs/ARCHITECTURE.md), [roadmap](docs/ROADMAP.md), and [maintainer workflow](docs/MAINTAINER-WORKFLOW.md). [AGENTS.md](AGENTS.md) provides repository guidance for coding tools. This is an early-stage project; roadmap items describe proposed work rather than adoption or funding claims.
+
+The display name is Piano Sprout. Historical `phim:*` storage keys, lesson IDs, the sample iOS bundle ID, and the `com.phim.piano` OAuth scheme are retained for compatibility; renaming the app does not migrate or erase practice history.

@@ -1,6 +1,6 @@
 [English](README.md) | **Tiếng Việt**
 
-# Phím — học piano mỗi ngày
+# Piano Sprout — học piano mỗi ngày
 
 Ứng dụng học piano mã nguồn mở bằng React, TypeScript và Vite, có bản iOS bằng Capacitor 8. Mặc định tiếng Anh; bạn vẫn có thể chọn Tiếng Việt trong bộ chọn ngôn ngữ. Giao diện tiếng Việt/English; hỗ trợ luyện bằng phím màn hình, micro từng nốt và USB MIDI trong app iOS.
 
@@ -8,20 +8,22 @@ Bạn có thể tải mã, chạy trên máy, fork, sửa và phát triển phi�
 
 **[Dùng thử trực tuyến](https://phimpiano.devoralabs.tech/)** — mở bản do maintainer vận hành, hoặc làm theo hướng dẫn dưới đây để chạy bản riêng. Website có thể khác commit mới nhất của repo public.
 
-[![Build and test](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml/badge.svg)](https://github.com/devoralabsapp/phim-piano-public/actions/workflows/checks.yml)
+[![Build and test](https://github.com/devoralabsapp/piano-sprout/actions/workflows/checks.yml/badge.svg)](https://github.com/devoralabsapp/piano-sprout/actions/workflows/checks.yml)
 
 ## Chạy nhanh — không cần tài khoản cloud
 
 Cần Node.js 22.12+ và npm.
 
 ```sh
-git clone https://github.com/devoralabsapp/phim-piano-public.git
-cd phim-piano-public
+git clone https://github.com/devoralabsapp/piano-sprout.git
+cd piano-sprout
 npm ci
 npm run dev
 ```
 
 Mở **http://localhost:5173**. Khi chưa có biến môi trường, ứng dụng chạy ở **chế độ khách** và lưu tiến độ trong trình duyệt. Không cần Supabase, Vercel hoặc tài khoản Google để học thử. Xóa dữ liệu trình duyệt có thể làm mất tiến độ khách; có chức năng xuất nhật ký JSON.
+
+![Piano Sprout — giao diện tiếng Anh](docs/screenshots/piano-sprout.png)
 
 ## Tính năng
 

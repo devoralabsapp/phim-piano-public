@@ -1,3 +1,4 @@
+import { appName } from "./lib/brand";
 import { useLanguage } from "./lib/i18n";
 import { useEffect, useRef, useState } from "react";
 import type { User } from "@supabase/supabase-js";
@@ -326,7 +327,7 @@ export default function App() {
           <Info size={17} />
           <span>
             {t(
-              "Trình duyệt này chưa hỗ trợ MIDI. Trên iPad/iPhone, dùng bản Phím iOS để kết nối đàn.",
+              "Trình duyệt này chưa hỗ trợ MIDI. Trên iPad/iPhone, dùng bản Piano Sprout iOS để kết nối đàn.",
             )}
           </span>
         </div>
@@ -350,14 +351,14 @@ export default function App() {
         <button
           className="brand"
           onClick={() => go("home")}
-          aria-label={t("Phím — Tổng quan")}
+          aria-label={`${appName} — ${t("Tổng quan")}`}
         >
           <span className="brand-mark">
             <i />
             <i />
             <i />
           </span>
-          {t("phím")}
+          {appName}
           <span>.</span>
         </button>
         <p className="tagline">{t("TỪNG PHÍM ĐÀN, MỘT NIỀM VUI")}</p>

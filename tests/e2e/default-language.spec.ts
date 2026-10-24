@@ -6,7 +6,10 @@ test("new visitors start in English and can keep Vietnamese after reload", async
 }) => {
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page).toHaveTitle("Phím · Learn piano every day");
+  await expect(page).toHaveTitle("Piano Sprout · Learn piano every day");
+  await expect(
+    page.getByRole("button", { name: "Piano Sprout — Overview", exact: true }),
+  ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "A little piano, every day." }),
   ).toBeVisible();

@@ -19,7 +19,7 @@ Playback includes every note in a group and its beat duration, including rests. 
 
 Notation supports treble/bass clefs, accidentals, note lengths, dots, rests, and triplet indicators. It is a practice view rather than a full multi-voice engraving engine. Select a hand and section before playback or practice. Tap a note to restart there; completing a lesson requires playing the whole lesson.
 
-The **music library** has 10 practice pieces with source/composer information. Simplified arrangements are prepared for Phím without copying commercial recordings or arrangements. Minuet in G is credited to Christian Petzold ([source](https://imslp.org/wiki/Minuet_%28Pezold%2C_Christian%29)); the garden waltz and nocturne are original pieces.
+The **music library** has 10 practice pieces with source/composer information. Simplified arrangements are prepared for Piano Sprout without copying commercial recordings or arrangements. Minuet in G is credited to Christian Petzold ([source](https://imslp.org/wiki/Minuet_%28Pezold%2C_Christian%29)); the garden waltz and nocturne are original pieces.
 
 The **practice room** includes animated technique guides, four-bar sight-reading at three levels, and a placement assessment. Recommendations use recent practice results. They are not certificate grades or a teacher's performance assessment. Technique exercises require learners to listen and adjust their own playing.
 

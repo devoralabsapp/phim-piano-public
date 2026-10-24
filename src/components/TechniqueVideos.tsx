@@ -26,7 +26,7 @@ export default function TechniqueVideos() {
       <h2>{t("Video minh họa kỹ thuật")}</h2>
       <p className="small muted">
         {t(
-          "Video hoạt họa do Phím biên soạn, minh họa thứ tự ngón và phối hợp tay. Không phải video giáo viên biểu diễn.",
+          "Video hoạt họa do Piano Sprout biên soạn, minh họa thứ tự ngón và phối hợp tay. Không phải video giáo viên biểu diễn.",
         )}
       </p>
       <div className="technique-tabs">

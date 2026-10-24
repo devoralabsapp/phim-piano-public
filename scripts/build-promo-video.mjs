@@ -107,7 +107,7 @@ await page.evaluate(async (shots) => {
       rounded(0, -40, 10, 40, 3, color);
       rounded(17, -31, 10, 31, 3, color);
       rounded(34, -47, 10, 47, 3, color);
-      text("phím.", 64, 0, 59, color, 800);
+      text("Piano Sprout", 64, 0, 42, color, 800);
       c.restore();
     }
     const dark = s === 0 || s === 5;
@@ -147,7 +147,7 @@ await page.evaluate(async (shots) => {
       text("Có đàn rồi.", 90, 470 + dy, 91, light, 800);
       text("Bắt đầu", 90, 590 + dy, 91, light, 800);
       text("từ đâu?", 90, 710 + dy, 106, acid, 800);
-      text("Để phím. đồng hành cùng bạn.", 94, 825, 36, "#bdd0c0", 400);
+      text("Để Piano Sprout đồng hành cùng bạn.", 94, 825, 36, "#bdd0c0", 400);
       c.save();
       c.translate(90, 1040 + (1 - entrance) * 90);
       c.rotate(-0.045);
@@ -396,6 +396,6 @@ await browser.close();
 copyFileSync(`${dir}/phim-piano-tiktok.mp4`, `${output}/phim-piano-tiktok.mp4`);
 writeFileSync(
   `${output}/caption.txt`,
-  `Có đàn rồi nhưng chưa biết bắt đầu từ đâu? 🎹\nCùng Phím học từng nốt, giữ nhịp và xây thói quen luyện piano mỗi ngày.\n\n32 bài học từ nhập môn đến nâng cao.\nThử tại: https://example.com\n\n#PhimPiano #HocPiano #PianoChoNguoiMoi #LuyenPiano #PianoMoiNgay\n\nVideo: 1080 × 1920, 30 fps, 26 giây.\nNhạc piano được tổng hợp riêng cho video, không dùng bản thu của bên thứ ba.\n`,
+  `Có đàn rồi nhưng chưa biết bắt đầu từ đâu? 🎹\nCùng Piano Sprout học từng nốt, giữ nhịp và xây thói quen luyện piano mỗi ngày.\n\n32 bài học từ nhập môn đến nâng cao.\nThử tại: https://example.com\n\n#PianoSprout #HocPiano #PianoChoNguoiMoi #LuyenPiano #PianoMoiNgay\n\nVideo: 1080 × 1920, 30 fps, 26 giây.\nNhạc piano được tổng hợp riêng cho video, không dùng bản thu của bên thứ ba.\n`,
 );
 console.log(`Video complete: ${output}/phim-piano-tiktok.mp4`);

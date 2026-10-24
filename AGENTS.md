@@ -2,7 +2,7 @@
 
 ## Project and scope
 
-Phím is an MIT-licensed React/TypeScript/Vite piano learning app with optional Supabase sync and Capacitor iOS plugins. Guest mode must work without credentials. English is the default; preserve Vietnamese and saved language preferences.
+Piano Sprout is an MIT-licensed React/TypeScript/Vite piano learning app with optional Supabase sync and Capacitor iOS plugins. Guest mode must work without credentials. English is the default; preserve Vietnamese and saved language preferences.
 
 Read README.md and CONTRIBUTING.md before changing code. See docs/ARCHITECTURE.md for the code map and docs/ROADMAP.md for open work. Work on the requested issue; avoid unrelated refactors or dependency/framework upgrades.
 

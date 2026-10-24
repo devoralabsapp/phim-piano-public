@@ -6,7 +6,7 @@ Mỗi cấp độ có 8 bài. Có thể lọc cấp độ và mở bất kỳ b�
 
 | Cấp độ | Nội dung |
 | --- | --- |
-| Cơ bản | Phím đàn, tư thế, 5 ngón, nhịp, giai điệu đầu tiên, tay trái, hợp âm và ôn tập |
+| Cơ bản | Piano Sprout đàn, tư thế, 5 ngón, nhịp, giai điệu đầu tiên, tay trái, hợp âm và ôn tập |
 | Nền tảng | Gam Đô hai tay riêng, gam Sol/Fa/La thứ tự nhiên, nốt móc đơn và dấu lặng, articulation, hợp âm I–IV–V–I |
 | Trung cấp | Gam hai quãng tám, arpeggio, đảo hợp âm, hai tay song song, Alberti bass, đệm waltz, đảo phách, ii–V–I |
 | Nâng cao | La thứ hòa thanh, gam bán cung, arpeggio giảm, đảo hợp âm bảy, làm nổi bè giai điệu, 3 chống 2, át phụ và étude tổng hợp |
@@ -19,7 +19,7 @@ Ngoài chế độ cao độ, nút **Chấm tiết tấu** mở lượt luyện 
 
 Khuông nhạc hỗ trợ khóa Sol/Fa, dấu thăng/giáng, độ dài nốt, dấu chấm dôi, dấu lặng và chỉ số nhóm ba. Đây là khuông luyện đơn giản, chưa phải bộ dàn trang bản nhạc nhiều bè với liên kết nốt/ties đầy đủ. Chọn tay và đoạn trước khi nghe mẫu hoặc luyện. Chạm nốt để bắt đầu lại từ vị trí đó; đánh dấu hoàn thành cần chơi trọn bài, không chỉ nốt cuối.
 
-**Thư viện bài nhạc** có 10 bản luyện riêng với nguồn/tác giả; các bản giản lược do Phím biên soạn, không sao chép bản thu hay bản phối thương mại. Minuet in G ghi đúng tác giả Christian Petzold ([bản nhạc nguồn](https://imslp.org/wiki/Minuet_%28Pezold%2C_Christian%29)). Hai bản Waltz trong khu vườn và Khúc đêm là nhạc gốc.
+**Thư viện bài nhạc** có 10 bản luyện riêng với nguồn/tác giả; các bản giản lược do Piano Sprout biên soạn, không sao chép bản thu hay bản phối thương mại. Minuet in G ghi đúng tác giả Christian Petzold ([bản nhạc nguồn](https://imslp.org/wiki/Minuet_%28Pezold%2C_Christian%29)). Hai bản Waltz trong khu vườn và Khúc đêm là nhạc gốc.
 
 **Phòng luyện tập** có video minh họa ngón, bài đọc nhạc mới bốn ô nhịp ở ba mức và đánh giá đầu vào. Gợi ý bài dựa trên kết quả gần đây; đánh giá này không tương đương cấp thi chứng chỉ hay đánh giá biểu diễn của giáo viên. Bài kỹ thuật cần người học tự nghe và điều chỉnh chất lượng chơi.
 
