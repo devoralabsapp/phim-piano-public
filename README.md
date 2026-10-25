@@ -27,6 +27,12 @@ Open **http://localhost:5173**. Without environment variables, the app runs in *
 
 ![Piano Sprout — English desktop preview](docs/screenshots/piano-sprout.png)
 
+### Playful Retro Neo-Brutalism
+
+A warm cream canvas, pastel cards, bold outlines, and hard offset shadows. Select it from **Appearance**.
+
+![Piano Sprout — Playful Retro Neo-Brutalism theme](docs/screenshots/playful-retro-neo-brutalism.png)
+
 ## Features
 
 - 32 lessons across four levels, including scales, chords, arpeggios, and hands-together practice.

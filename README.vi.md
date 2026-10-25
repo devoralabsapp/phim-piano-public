@@ -27,6 +27,12 @@ Mở **http://localhost:5173**. Khi chưa có biến môi trường, ứng dụn
 
 ![Piano Sprout — giao diện tiếng Anh](docs/screenshots/piano-sprout.png)
 
+### Playful Retro Neo-Brutalism
+
+Nền kem ấm, thẻ màu pastel, viền đen đậm và bóng đổ cứng. Chọn theme trong **Appearance / Giao diện**.
+
+![Piano Sprout — theme Playful Retro Neo-Brutalism](docs/screenshots/playful-retro-neo-brutalism.png)
+
 ## Tính năng
 
 - 32 bài học ở 4 cấp độ, gam, hợp âm, arpeggio và luyện hai tay.
