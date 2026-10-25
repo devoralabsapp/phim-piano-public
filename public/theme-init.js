@@ -3,7 +3,15 @@
   let theme = "sprout";
   try {
     const saved = localStorage.getItem("piano-sprout:theme");
-    if (["sprout", "command-line", "visual-code", "warm-paper"].includes(saved))
+    if (
+      [
+        "sprout",
+        "command-line",
+        "visual-code",
+        "warm-paper",
+        "playful-retro",
+      ].includes(saved)
+    )
       theme = saved;
   } catch {
     /* Storage may be disabled. */

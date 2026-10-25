@@ -24,6 +24,12 @@ export const themes = [
     description: "Sắc giấy ấm cho giờ luyện tập",
     color: "#f3ecdf",
   },
+  {
+    id: "playful-retro",
+    label: "Playful Retro Neo-Brutalism",
+    description: "Nền kem, màu pastel và viền đen vui nhộn",
+    color: "#fff8e9",
+  },
 ] as const;
 export type Theme = (typeof themes)[number]["id"];
 export function parseTheme(value: unknown): Theme {

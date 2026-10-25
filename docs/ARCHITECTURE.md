@@ -17,6 +17,14 @@ The web UI runs locally or as a static single-page application. A Capacitor shel
 | Native unit packages | `native/MidiParser/`, `native/PianoAudio/` | Parser and PCM checks without a device |
 | Database | `supabase/migrations/`, `setup/` | Session schema, ownership policies and privileges |
 
+## Appearance themes
+
+`src/lib/theme.ts` defines theme IDs and labels. `ThemeProvider` in `theme-context.tsx` persists `piano-sprout:theme` independently of language and progress; `public/theme-init.js` applies the validated choice before React renders. `ThemeSwitcher` uses the shared keyboard-accessible `PreferenceMenu`.
+
+Palettes live in `src/styles.css` under `:root[data-theme="..."]`. Playful Retro Neo-Brutalism adds reusable `--retro-*` colors, border, radius, and hard-shadow tokens, then maps them to the existing semantic palette. Its component overrides stay scoped to `playful-retro`. Fredoka/Nunito are optional Google Fonts with local fallbacks. Reduced-motion preferences disable transitions and hover movement.
+
+To add a theme, register its ID in the catalog and bootstrap allowlist, add scoped tokens/styles and a preview swatch, translate its description, and extend `tests/e2e/themes.spec.ts`. Preserve the Sprout fallback and existing saved preferences.
+
 ## Data flow
 
 Guest sessions are stored separately from each authenticated user's local history. Supabase sync runs only when configured and signed in; the database must enforce ownership through RLS. Guest progress is imported by explicit user action, not silently merged across accounts. Stable IDs and deterministic merging prevent duplicate imports.

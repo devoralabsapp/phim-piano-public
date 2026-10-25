@@ -4,6 +4,7 @@ const choices = [
   ["Command Line", "command-line"],
   ["Visual Code", "visual-code"],
   ["Warm Paper", "warm-paper"],
+  ["Playful Retro Neo-Brutalism", "playful-retro"],
 ] as const;
 async function choose(scope: Page | Locator, name: string) {
   await scope.getByRole("button", { name: "Appearance", exact: true }).click();
@@ -135,13 +136,13 @@ test("theme menus support keyboard selection and outside dismissal", async ({
 
 test("saved appearance is applied before React starts", async ({ page }) => {
   await page.addInitScript(() =>
-    localStorage.setItem("piano-sprout:theme", "visual-code"),
+    localStorage.setItem("piano-sprout:theme", "playful-retro"),
   );
   await page.route("**/src/main.tsx", (route) => route.abort());
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute(
     "data-theme",
-    "visual-code",
+    "playful-retro",
   );
   await expect(page.locator("#root")).toBeEmpty();
 });
@@ -155,4 +156,56 @@ test("an invalid preference safely uses Sprout", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "A little piano, every day." }),
   ).toBeVisible();
+});
+
+test("retro appearance spans all screens and preserves Vietnamese practice", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await choose(page, "Playful Retro Neo-Brutalism");
+  for (const screen of [
+    "Learning path",
+    "Music library",
+    "Practice room",
+    "Your progress",
+    "Account & connections",
+    "Overview",
+  ]) {
+    await page.getByRole("button", { name: screen, exact: true }).click();
+    await expect(page.locator("html")).toHaveAttribute(
+      "data-theme",
+      "playful-retro",
+    );
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+      screen,
+    ).toBe(true);
+  }
+  await page.getByRole("button", { name: "Language", exact: true }).click();
+  await page
+    .getByRole("menuitemradio", { name: "Tiếng Việt", exact: true })
+    .click();
+  await expect(page.locator("html")).toHaveAttribute("lang", "vi");
+  await page
+    .getByRole("button", { name: "Bắt đầu bài đầu tiên", exact: true })
+    .click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog).toBeVisible();
+  await expect(
+    dialog.getByRole("button", { name: "Giao diện", exact: true }),
+  ).toContainText("Playful Retro Neo-Brutalism");
+  await dialog
+    .getByRole("button", { name: "Bắt đầu luyện", exact: true })
+    .click();
+  await dialog.getByRole("button", { name: "C4", exact: true }).click();
+  await expect(
+    dialog.getByRole("button", { name: "Tạm dừng", exact: true }),
+  ).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
 });

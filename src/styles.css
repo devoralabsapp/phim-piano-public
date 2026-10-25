@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap");
 
 :root {
   --page-bg: #f7f8fa;
@@ -2207,4 +2207,267 @@ html[lang="en"] .tagline {
 :root[data-theme="command-line"] .brand {
   font-size: 20px;
   letter-spacing: -1px;
+}
+
+/* Playful Retro: tokens are scoped so the other palettes retain their styles. */
+:root[data-theme="playful-retro"] {
+  --retro-ink: #191715;
+  --retro-yellow: #ffdc58;
+  --retro-pink: #ffb7ca;
+  --retro-blue: #abd9f5;
+  --retro-mint: #b8ecd2;
+  --retro-border: 2px solid var(--retro-ink);
+  --retro-shadow: 4px 4px 0 var(--retro-ink);
+  --retro-radius: 18px;
+  --page-bg: #fff8e9;
+  --panel: #fffdf7;
+  --panel-soft: #f8eedb;
+  --panel-active: var(--retro-mint);
+  --hero-bg: var(--retro-yellow);
+  --text: var(--retro-ink);
+  --text-secondary: #39332e;
+  --muted: #574d44;
+  --green: var(--retro-ink);
+  --accent-hover: #302b25;
+  --soft: var(--retro-mint);
+  --on-accent: #fffdf7;
+  --line: var(--retro-ink);
+  --focus: #7052b8;
+  --warning-bg: #ffe7ad;
+  --warning-text: #66401c;
+  --warning-border: var(--retro-ink);
+  --overlay: #19171599;
+  --shadow: var(--retro-ink);
+  --ui-font: Nunito, "Be Vietnam Pro", sans-serif;
+  --heading-font: Fredoka, Nunito, "Be Vietnam Pro", sans-serif;
+  --key-playing: var(--retro-yellow);
+  --key-marker: #7052b8;
+  --key-marker-dark: var(--retro-pink);
+  color-scheme: light;
+}
+:root[data-theme="playful-retro"] :is(h1, h2, h3, .stat strong, .daily-clock) {
+  font-family: var(--heading-font);
+  font-weight: 600;
+}
+:root[data-theme="playful-retro"]
+  :is(
+    .hero,
+    .card,
+    .stat,
+    .lesson-row,
+    .lesson-modal,
+    .daily-modal,
+    .trainer,
+    .language-menu
+  ) {
+  border: var(--retro-border);
+  border-radius: var(--retro-radius);
+  box-shadow: var(--retro-shadow);
+}
+:root[data-theme="playful-retro"] .sidebar {
+  background: var(--panel);
+  border-right: var(--retro-border);
+}
+:root[data-theme="playful-retro"] .sidebar nav button.active {
+  border: var(--retro-border);
+  background: var(--retro-mint);
+  box-shadow: 3px 3px 0 var(--retro-ink);
+}
+:root[data-theme="playful-retro"]
+  :is(.tip, .quote, .instructions, .rhythm-status, .assessment-stats > div) {
+  border: var(--retro-border);
+  border-radius: 14px;
+  background: var(--retro-blue);
+  color: var(--text);
+}
+:root[data-theme="playful-retro"] .quote {
+  background: var(--retro-pink);
+}
+:root[data-theme="playful-retro"] .stats .stat:nth-child(3n + 1) {
+  background: var(--retro-mint);
+}
+:root[data-theme="playful-retro"] .stats .stat:nth-child(3n + 2) {
+  background: var(--retro-pink);
+}
+:root[data-theme="playful-retro"] .stats .stat:nth-child(3n) {
+  background: var(--retro-blue);
+}
+:root[data-theme="playful-retro"] .right-column > .card:first-child {
+  background: var(--retro-pink);
+}
+:root[data-theme="playful-retro"] .right-column > .metro {
+  background: var(--retro-blue);
+}
+:root[data-theme="playful-retro"] .music-piece:nth-child(4n + 2) {
+  background: var(--retro-mint);
+}
+:root[data-theme="playful-retro"] .music-piece:nth-child(4n + 3) {
+  background: var(--retro-pink);
+}
+:root[data-theme="playful-retro"] .music-piece:nth-child(4n) {
+  background: var(--retro-blue);
+}
+:root[data-theme="playful-retro"]
+  :is(.lesson-number, .stat > span, .history-icon, .language-code, .avatar) {
+  border: var(--retro-border);
+  background: var(--retro-yellow);
+  color: var(--text);
+}
+:root[data-theme="playful-retro"]
+  :is(
+    .primary,
+    .outline,
+    .language-trigger,
+    .google-button,
+    .answer,
+    .level-filters button,
+    .technique-tabs button
+  ) {
+  border: var(--retro-border);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--retro-ink);
+  font-weight: 800;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    background 140ms ease;
+}
+:root[data-theme="playful-retro"] .primary {
+  background: var(--retro-yellow);
+}
+:root[data-theme="playful-retro"] :is(.primary, .outline):hover:not(:disabled) {
+  background: var(--retro-mint);
+}
+:root[data-theme="playful-retro"]
+  :is(
+    .primary,
+    .outline,
+    .language-trigger,
+    .google-button,
+    .answer,
+    .level-filters button,
+    .technique-tabs button
+  ):active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--retro-ink);
+}
+:root[data-theme="playful-retro"]
+  :is(.badge, .streak, .week .today span, .daily-stages .active) {
+  border: var(--retro-border);
+  background: var(--retro-yellow);
+  color: var(--text);
+}
+:root[data-theme="playful-retro"] .bar {
+  border: var(--retro-border);
+  height: 10px;
+}
+:root[data-theme="playful-retro"] .bar i {
+  background: var(--retro-ink);
+}
+:root[data-theme="playful-retro"]
+  :is(
+    .practice-controls select,
+    .practice-controls input[type="number"],
+    .library-filters select,
+    .library-filters input,
+    .trainer select,
+    .metro select,
+    .score-scroll
+  ) {
+  border: var(--retro-border);
+  border-radius: 12px;
+}
+:root[data-theme="playful-retro"] .topbar {
+  flex-wrap: wrap;
+  gap: 14px;
+}
+:root[data-theme="playful-retro"] .theme-switch .language-trigger {
+  max-width: 252px;
+  text-align: left;
+}
+:root[data-theme="playful-retro"] .theme-switch .language-menu {
+  width: 320px;
+}
+:root[data-theme="playful-retro"] .language-option[aria-checked="true"] {
+  background: var(--retro-mint);
+}
+:root[data-theme="playful-retro"] .theme-swatch {
+  border: var(--retro-border);
+}
+.theme-swatch[data-theme-preview="playful-retro"] {
+  background: #ffb7ca;
+  border: 2px solid #191715;
+}
+.theme-swatch[data-theme-preview="playful-retro"] i:first-child {
+  background: #ffdc58;
+}
+.theme-swatch[data-theme-preview="playful-retro"] i:last-child {
+  background: #abd9f5;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  :root[data-theme="playful-retro"]
+    :is(
+      .primary,
+      .outline,
+      .language-trigger,
+      .google-button,
+      .answer,
+      .level-filters button,
+      .technique-tabs button
+    ):hover:not(:disabled) {
+    transform: translate(-1px, -1px);
+    box-shadow: var(--retro-shadow);
+  }
+  :root[data-theme="playful-retro"]
+    :is(
+      .primary,
+      .outline,
+      .language-trigger,
+      .google-button,
+      .answer,
+      .level-filters button,
+      .technique-tabs button
+    ):active:not(:disabled) {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+  }
+}
+@media (max-width: 700px) {
+  :root[data-theme="playful-retro"] .sidebar {
+    border-right: 0;
+    border-bottom: var(--retro-border);
+  }
+  :root[data-theme="playful-retro"] .sidebar nav {
+    padding-bottom: 5px;
+  }
+  :root[data-theme="playful-retro"] .theme-switch .language-trigger {
+    max-width: 205px;
+  }
+  :root[data-theme="playful-retro"] .hero {
+    padding: 21px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="playful-retro"] button {
+    transition: none;
+  }
+}
+
+:root[data-theme="playful-retro"] .primary {
+  color: var(--retro-ink);
+}
+:root[data-theme="playful-retro"] .piano-art {
+  border-color: var(--retro-ink);
+  box-shadow: 8px 10px 0 var(--retro-pink);
+}
+:root[data-theme="playful-retro"] .art-black {
+  background: var(--retro-ink);
+  box-shadow:
+    22px 0 var(--retro-ink),
+    66px 0 var(--retro-ink),
+    88px 0 var(--retro-ink),
+    110px 0 var(--retro-ink);
+}
+:root[data-theme="playful-retro"] .piano-art > span {
+  color: var(--retro-ink);
 }

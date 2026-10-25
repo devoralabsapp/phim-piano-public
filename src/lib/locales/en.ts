@@ -427,5 +427,7 @@ export const english: Record<string, string> = {
   "Xanh dịu, sáng và gần gũi": "Soft greens and a light, welcoming canvas",
   "Nền tối, chữ xanh và monospace": "Dark canvas, green ink, monospace type",
   "Xám than với điểm nhấn xanh dương": "Charcoal panels with a blue accent",
+  "Nền kem, màu pastel và viền đen vui nhộn":
+    "Cream, playful pastels, and bold black outlines",
   "Sắc giấy ấm cho giờ luyện tập": "Warm paper tones for practice time",
 };

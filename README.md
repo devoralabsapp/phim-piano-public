@@ -2,7 +2,7 @@
 
 **English** | [Tiếng Việt](README.vi.md)
 
-Choose **Appearance** beside the language selector to switch between **Sprout**, **Command Line**, **Visual Code**, and **Warm Paper**. Your theme is saved locally, defaults to Sprout, and does not change your language or practice progress.
+Choose **Appearance** beside the language selector to switch between **Sprout**, **Command Line**, **Visual Code**, **Warm Paper**, and **Playful Retro Neo-Brutalism**. Your theme is saved locally, defaults to Sprout, and does not change your language or practice progress.
 
 An open-source piano learning app built with React, TypeScript, and Vite, with a Capacitor 8 iOS app. **English is the default language**; Vietnamese remains available in the language selector. Your choice is saved on your device. Existing Vietnamese preferences are preserved.
 

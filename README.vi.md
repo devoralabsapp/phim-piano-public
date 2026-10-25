@@ -2,7 +2,7 @@
 
 # Piano Sprout — học piano mỗi ngày
 
-Chọn **Appearance / Giao diện** bên cạnh ngôn ngữ để đổi giữa Sprout, Command Line, Visual Code và Warm Paper. Theme được lưu riêng trên thiết bị; mặc định là Sprout và không ảnh hưởng tiến độ hay ngôn ngữ.
+Chọn **Appearance / Giao diện** bên cạnh ngôn ngữ để đổi giữa Sprout, Command Line, Visual Code, Warm Paper và Playful Retro Neo-Brutalism. Theme được lưu riêng trên thiết bị; mặc định là Sprout và không ảnh hưởng tiến độ hay ngôn ngữ.
 
 Ứng dụng học piano mã nguồn mở bằng React, TypeScript và Vite, có bản iOS bằng Capacitor 8. Mặc định tiếng Anh; bạn vẫn có thể chọn Tiếng Việt trong bộ chọn ngôn ngữ. Giao diện tiếng Việt/English; hỗ trợ luyện bằng phím màn hình, micro từng nốt và USB MIDI trong app iOS.
 
