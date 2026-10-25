@@ -32,24 +32,24 @@
   color-scheme: light;
 }
 :root[data-theme="command-line"] {
-  --page-bg: #0d1410;
-  --panel: #121e17;
-  --panel-soft: #18281e;
-  --panel-active: #203c2b;
-  --hero-bg: #12251a;
+  --page-bg: #000000;
+  --panel: #0b0b0b;
+  --panel-soft: #141414;
+  --panel-active: #1c1c1c;
+  --hero-bg: #080808;
   --text: #d6f4df;
   --text-secondary: #b1d4bb;
   --muted: #9bb9a3;
   --green: #8ee6aa;
   --accent-hover: #bcf5cc;
-  --soft: #203c2b;
-  --on-accent: #0d2114;
-  --line: #33523e;
+  --soft: #1c1c1c;
+  --on-accent: #080808;
+  --line: #333333;
   --focus: #8ee6aa;
   --warning-bg: #332b19;
   --warning-text: #efd394;
   --warning-border: #6e5a2c;
-  --overlay: #020a06bb;
+  --overlay: #000000bb;
   --shadow: #00000066;
   --ui-font: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --heading-font: var(--ui-font);
@@ -2156,10 +2156,10 @@ html[lang="en"] .tagline {
   background: #eaf0e7;
 }
 .theme-swatch[data-theme-preview="command-line"] {
-  background: #12251a;
+  background: #080808;
 }
 .theme-swatch[data-theme-preview="command-line"] i:first-child {
-  background: #0d1410;
+  background: #000000;
 }
 .theme-swatch[data-theme-preview="command-line"] i:last-child {
   background: #8ee6aa;

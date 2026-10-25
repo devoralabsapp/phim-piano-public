@@ -10,7 +10,7 @@ export const themes = [
     id: "command-line",
     label: "Command Line",
     description: "Nền tối, chữ xanh và monospace",
-    color: "#0d1410",
+    color: "#000000",
   },
   {
     id: "visual-code",
