@@ -1,3 +1,4 @@
+import ThemeSwitcher from "./components/ThemeSwitcher";
 import { appName } from "./lib/brand";
 import { useLanguage } from "./lib/i18n";
 import { useEffect, useRef, useState } from "react";
@@ -406,6 +407,7 @@ export default function App() {
           </span>
           <div>
             <LanguageSwitcher />
+            <ThemeSwitcher />
             <span className="date">
               {new Date().toLocaleDateString(dateLocale, {
                 day: "numeric",

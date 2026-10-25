@@ -1,3 +1,4 @@
+import ThemeSwitcher from "./ThemeSwitcher";
 import Score from "./Score";
 import RhythmTrainer, { type MidiMessage } from "./RhythmTrainer";
 import { handNotes, phraseRanges, type PracticeHand } from "../lib/practice";
@@ -315,6 +316,7 @@ export default function LessonPlayer({
         </button>
         <div className="modal-language">
           <LanguageSwitcher />
+          <ThemeSwitcher />
         </div>
         <span className="eyebrow">
           {t(levels.find((level) => level.id === lesson.level)?.title ?? "")} ·{" "}

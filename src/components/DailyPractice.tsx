@@ -1,3 +1,4 @@
+import ThemeSwitcher from "./ThemeSwitcher";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "../lib/i18n";
 import { useEffect, useRef, useState } from "react";
@@ -139,6 +140,7 @@ export default function DailyPractice({
         </button>
         <div className="modal-language">
           <LanguageSwitcher />
+          <ThemeSwitcher />
         </div>
         <span className="eyebrow">{t("15 PHÚT CHO CHÍNH MÌNH")}</span>
         <h2 id="daily-title">{t("Buổi luyện hôm nay")}</h2>

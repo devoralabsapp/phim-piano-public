@@ -197,7 +197,7 @@ export default function Score({
                 width={Math.max(40, note.beats * 48) - 3}
                 height={both ? 220 : 130}
                 rx="7"
-                fill={isCurrent ? "#e4eed9" : "transparent"}
+                fill={isCurrent ? "var(--panel-active)" : "transparent"}
               />
               {beat > 0 &&
                 Math.abs(beat / meter - Math.round(beat / meter)) < 0.0001 && (
@@ -212,7 +212,7 @@ export default function Score({
               {index === 0 ||
               (beat > 0 &&
                 Math.abs(beat / meter - Math.round(beat / meter)) < 0.0001) ? (
-                <text x={xpos - 10} y="57" fontSize="11" fill="#68815d">
+                <text x={xpos - 10} y="57" fontSize="11" fill="var(--muted)">
                   {Math.floor(beat / meter) + 1}
                 </text>
               ) : null}
@@ -298,7 +298,7 @@ export default function Score({
                         rx="6.5"
                         ry="4.5"
                         transform={`rotate(-18 ${xpos} ${y})`}
-                        fill={duration >= 2 ? "white" : "currentColor"}
+                        fill={duration >= 2 ? "var(--panel)" : "currentColor"}
                         stroke="currentColor"
                         strokeWidth="1.6"
                       />

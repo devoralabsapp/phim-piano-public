@@ -423,4 +423,9 @@ export const english: Record<string, string> = {
   "Học piano mỗi ngày": "Learn piano every day",
   "Học piano mỗi ngày với bài luyện có hướng dẫn, máy đếm nhịp và Yamaha MIDI trên iOS.":
     "Learn piano every day with guided practice, a metronome, and Yamaha MIDI on iOS.",
+  "Giao diện": "Appearance",
+  "Xanh dịu, sáng và gần gũi": "Soft greens and a light, welcoming canvas",
+  "Nền tối, chữ xanh và monospace": "Dark canvas, green ink, monospace type",
+  "Xám than với điểm nhấn xanh dương": "Charcoal panels with a blue accent",
+  "Sắc giấy ấm cho giờ luyện tập": "Warm paper tones for practice time",
 };

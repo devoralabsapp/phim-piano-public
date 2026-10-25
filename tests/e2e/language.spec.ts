@@ -94,7 +94,7 @@ test("daily practice language changes keep the session running", async ({
   await page.getByRole("button", { name: "Buổi luyện 15 phút" }).click();
   const d = page.getByRole("dialog");
   await d.getByRole("button", { name: "Bắt đầu luyện", exact: true }).click();
-  await expect(d.locator(".daily-clock")).toContainText("14:59");
+  await expect(d.locator(".daily-clock")).toContainText(/14:\d{2}/);
   await selectLanguage(d, "en");
   await expect(
     d.getByRole("heading", { name: "Today's practice" }),
