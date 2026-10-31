@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { supabase } from "./auth";
+import { configured } from "./firebase";
+import { loadCloudSessions, saveCloudSessions } from "./cloud-progress";
 import {
   mergeSessions,
   validSession,
@@ -24,20 +25,20 @@ export function useProgress(userId: string | null) {
     setSync("");
     setSessions(read(key));
     setReady(true);
-    if (!supabase || !userId) return;
+    if (!configured || !userId) return;
     let cancelled = false;
     async function run() {
       setSync("Đang đồng bộ…");
-      const { data, error } = await supabase!
-        .from("practice_sessions")
-        .select("*")
-        .eq("user_id", userId);
-      if (cancelled || g !== generation.current) return;
-      if (error) {
+      let data: PracticeSession[];
+      try {
+        data = await loadCloudSessions(userId!);
+      } catch {
+        if (cancelled || g !== generation.current) return;
         setError("Chưa đồng bộ được. Tiến độ vẫn được lưu trên thiết bị.");
         setSync("Chưa đồng bộ");
         return;
       }
+      if (cancelled || g !== generation.current) return;
       const merged = mergeSessions(
         read(key),
         (data ?? []).filter(validSession),
@@ -48,20 +49,29 @@ export function useProgress(userId: string | null) {
         setError("Thiết bị không cho phép lưu tiến độ.");
       }
       setSessions(merged);
-      if (merged.length) {
-        const { error: pushError } = await supabase!
-          .from("practice_sessions")
-          .upsert(
-            merged.map((s) => ({ ...s, user_id: userId })),
-            { onConflict: "id" },
-          );
-        if (cancelled) return;
-        if (pushError) {
+      const remoteById = new Map(data.map((s) => [s.id, s]));
+      const pending = merged.filter((s) => {
+        const remote = remoteById.get(s.id);
+        return (
+          !remote ||
+          s.active_seconds !== remote.active_seconds ||
+          s.correct_notes !== remote.correct_notes ||
+          s.wrong_notes !== remote.wrong_notes ||
+          s.completed !== remote.completed ||
+          JSON.stringify(s.assessment) !== JSON.stringify(remote.assessment)
+        );
+      });
+      if (pending.length) {
+        try {
+          await saveCloudSessions(userId!, pending);
+        } catch {
+          if (cancelled || g !== generation.current) return;
           setSync("Chưa đồng bộ");
           setError("Không tải được tiến độ lên tài khoản.");
           return;
         }
       }
+      if (cancelled || g !== generation.current) return;
       setSync("Đã đồng bộ");
     }
     void run();
@@ -79,16 +89,19 @@ export function useProgress(userId: string | null) {
       setError("Không lưu được trên thiết bị. Hãy bật lưu trữ trình duyệt.");
     }
     if (currentKey.current === targetKey) setSessions(merged);
-    if (supabase && targetUser) {
-      const { error } = await supabase
-        .from("practice_sessions")
-        .upsert({ ...session, user_id: targetUser }, { onConflict: "id" });
-      if (currentKey.current !== targetKey) return;
-      setSync(error ? "Chưa đồng bộ" : "Đã đồng bộ");
-      if (error)
+    if (configured && targetUser) {
+      setSync("Đang đồng bộ…");
+      setError("");
+      try {
+        await saveCloudSessions(targetUser, [session]);
+        if (currentKey.current === targetKey) setSync("Đã đồng bộ");
+      } catch {
+        if (currentKey.current !== targetKey) return;
+        setSync("Chưa đồng bộ");
         setError(
           "Tiến độ đã lưu trên thiết bị; sẽ thử đồng bộ ở lần mở tiếp theo.",
         );
+      }
     }
   }
   async function importGuest() {
@@ -110,14 +123,17 @@ export function useProgress(userId: string | null) {
       return;
     }
     setSessions(merged);
-    if (supabase && merged.length) {
-      const { error } = await supabase.from("practice_sessions").upsert(
-        merged.map((s) => ({ ...s, user_id: userId })),
-        { onConflict: "id" },
-      );
-      if (currentKey.current !== targetKey) return;
-      setSync(error ? "Chưa đồng bộ" : "Đã đồng bộ");
-      if (error) setError("Chưa đồng bộ được dữ liệu nhập.");
+    if (configured && merged.length) {
+      setSync("Đang đồng bộ…");
+      setError("");
+      try {
+        await saveCloudSessions(targetUser, merged);
+        if (currentKey.current === targetKey) setSync("Đã đồng bộ");
+      } catch {
+        if (currentKey.current !== targetKey) return;
+        setSync("Chưa đồng bộ");
+        setError("Chưa đồng bộ được dữ liệu nhập.");
+      }
     }
   }
   return { sessions, add, importGuest, sync, error, ready };

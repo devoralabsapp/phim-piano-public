@@ -14,7 +14,7 @@ Thanks for helping make piano practice more accessible. Contributions are welcom
 - `src/components/`: React interface and practice flows.
 - `src/lib/`: musical content, localization, timing, audio, pitch detection, storage, and optional authentication/sync.
 - `tests/`: unit tests and browser scenarios; `native/`: isolated Swift parser/audio packages.
-- `ios/`: native app and plugins; `supabase/`: schema and RLS policies for your own backend.
+- `ios/`: native app and plugins; `supabase/`: schema and Firestore Security Rules policies for your own backend.
 
 ## Make a focused change
 
@@ -34,7 +34,7 @@ npm test
 npm run build
 npx playwright install chromium
 CI=1 npm run test:e2e
-CI=1 npm run test:auth
+CI=1 npm run test:firebase
 ```
 
 Keep ports 5173 and 5174 free. Most existing scenarios explicitly select Vietnamese; default-language scenarios verify English and saved Vietnamese preferences. Auth tests are mocked and do not prove real Google login.

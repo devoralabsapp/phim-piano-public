@@ -2,7 +2,7 @@
 
 ## Project and scope
 
-Piano Sprout is an MIT-licensed React/TypeScript/Vite piano learning app with optional Supabase sync and Capacitor iOS plugins. Guest mode must work without credentials. English is the default; preserve Vietnamese and saved language preferences.
+Piano Sprout is an MIT-licensed React/TypeScript/Vite piano learning app with optional Firebase sync and Capacitor iOS plugins. Guest mode must work without credentials. English is the default; preserve Vietnamese and saved language preferences.
 
 Read README.md and CONTRIBUTING.md before changing code. See docs/ARCHITECTURE.md for the code map and docs/ROADMAP.md for open work. Work on the requested issue; avoid unrelated refactors or dependency/framework upgrades.
 
@@ -13,7 +13,7 @@ Read README.md and CONTRIBUTING.md before changing code. See docs/ARCHITECTURE.m
 - Production build: `npm run build`.
 - Browser setup: `npx playwright install chromium`.
 - Web scenarios: `CI=1 npm run test:e2e` (port 5173).
-- Mock auth scenarios: `CI=1 npm run test:auth` (port 5174).
+- Mock auth scenarios: `CI=1 npm run test:firebase` (port 5174).
 - Swift tests on macOS: `swift test --package-path native/MidiParser` and `swift test --package-path native/PianoAudio`.
 - iOS: `npm run ios:sync`; use the unsigned simulator build documented in CONTRIBUTING.md.
 
@@ -24,7 +24,7 @@ Run checks appropriate to the change and report actual results. For documentatio
 - Preserve lesson IDs, session compatibility, account isolation, and explicit guest import behavior.
 - Existing Vietnamese strings serve as localization keys. Add corresponding English translations; do not erase the Vietnamese catalog to make English the default.
 - The public bundle ID is a placeholder, `org.example.phimpiano`; keep personal Apple Team/signing data out of commits.
-- OAuth scheme `com.phim.piano` is intentionally separate from the bundle ID. Changing it requires coordinated auth code, Info.plist, and Supabase redirects.
+- Keep the legacy `com.phim.piano` scheme. Firebase Google login adds the reversed client ID from the ignored iOS plist; `ios:sync` prepares it.
 - Keep project.pbxproj tracked: it declares native source files. If package products are missing, check dependencies, sync, and package resolution first.
 
 ## Safety and review

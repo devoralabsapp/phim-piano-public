@@ -23,7 +23,7 @@ npm ci
 npm run dev
 ```
 
-Open **http://localhost:5173**. Without environment variables, the app runs in **guest mode** and stores progress in your browser. Supabase, Vercel, and Google accounts are optional. Clearing browser storage may erase guest progress; use the JSON practice-log export to keep a copy.
+Open **http://localhost:5173**. Without environment variables, the app runs in **guest mode** and stores progress in your browser. Firebase, Vercel, and Google accounts are optional. Clearing browser storage may erase guest progress; use the JSON practice-log export to keep a copy.
 
 ![Piano Sprout — English desktop preview](docs/screenshots/piano-sprout.png)
 
@@ -40,24 +40,13 @@ A warm cream canvas, pastel cards, bold outlines, and hard offset shadows. Selec
 - Sight-reading, placement assessment, rhythm scoring, and practice history.
 - A 15-minute daily session, metronome, and animated technique guides.
 - On-device single-note microphone input; native CoreMIDI and AVAudioPlayer plugins on iOS.
-- Optional Google OAuth PKCE and progress sync through Supabase with Row Level Security.
+- Optional Google login through Firebase Auth and progress sync through Firestore with owner-scoped Security Rules.
 
 ## Optional Google login and progress sync
 
-```sh
-cp .env.example .env.local
-```
+Create your own Firebase project, enable Google in Firebase Authentication, and create a Firestore database. Copy `.env.example` to `.env.local` and supply your Firebase Web app configuration. Set `VITE_FIREBASE_DATABASE_ID` to your database ID, deploy the checked-in rules, and authorize your web domain in Firebase Auth.
 
-Enter the URL and anon/publishable key for **your own Supabase project**:
-
-```dotenv
-VITE_SUPABASE_URL=
-VITE_SUPABASE_ANON_KEY=
-```
-
-Leave both empty for guest mode. Never put a service-role key, Google Client Secret, administrator token, or password in `VITE_` variables: these values are bundled into the client. Do not commit `.env.local`.
-
-Follow [Supabase, Google, and hosting setup](docs/SETUP.md). For a new database, run `supabase/setup/new-project.sql` once on your own new project. Existing databases should apply only missing migrations; do not rerun initialization. Test Google OAuth with your own configured account.
+See [Firebase setup and migration](docs/FIREBASE.md) for environment variables, Security Rules, Vercel, iOS Google login, emulator tests, and moving an existing deployment. Never put service-account credentials in client code or commit personal config/user exports. Guest practice works without any cloud configuration.
 
 ## Build and test
 
@@ -66,7 +55,7 @@ npm test
 npm run build
 npx playwright install chromium
 CI=1 npm run test:e2e
-CI=1 npm run test:auth
+CI=1 npm run test:firebase
 ```
 
 Use `npm run preview` to preview the production build. Keep ports 5173 and 5174 free for Playwright. Auth tests use mocked endpoints, without real Google sign-in or database writes. Default-language tests cover English on a clean browser and Vietnamese preference persistence; other scenarios explicitly select Vietnamese to exercise that interface too.
@@ -82,7 +71,7 @@ npm run ios:open
 
 Open the **App** scheme. The public project uses the placeholder bundle ID `org.example.phimpiano` and an empty Apple Team. Choose your own Team and bundle ID before installing on a device; see the [iOS, MIDI, and audio guide](docs/IOS.md).
 
-The default OAuth callback remains `com.phim.piano://auth/callback`, intentionally separate from the bundle ID. If you customize its scheme, update the auth code, Info.plist, and Supabase redirect allowlist together.
+The existing `com.phim.piano` URL scheme is retained. Firebase Google login adds its own reversed client ID scheme using your ignored iOS plist; see [Firebase iOS setup](docs/FIREBASE.md#ios).
 
 ```sh
 swift test --package-path native/MidiParser

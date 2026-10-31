@@ -13,7 +13,7 @@ Piano Sprout is an early-stage open-source project. These are proposed areas of 
 
 - Document a repeatable physical-device test matrix for audio routes, silent mode, background/foreground transitions, microphone permissions, and MIDI cable reconnects.
 - Measure MIDI/rhythm latency with real equipment and explain measurement conditions before changing tolerances.
-- Verify real Google PKCE sign-in, restart recovery, explicit guest import, and progress sync across devices using your own Supabase project.
+- Verify real Google login sign-in, restart recovery, explicit guest import, and progress sync across devices using your own Firebase project.
 - Review deployment-specific microphone policy and document an intentional opt-in configuration without weakening unrelated browser protections.
 
 ## Maintenance and learning quality

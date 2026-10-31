@@ -1,3 +1,5 @@
+> **Backend update:** Firebase Auth and Firestore replace Supabase. Follow [FIREBASE.md](FIREBASE.md) for current backend and native Google sign-in setup. Any Supabase instructions below are historical.
+
 # Google sign-in and deployment setup
 
 **English** | [Tiếng Việt](SETUP.vi.md)

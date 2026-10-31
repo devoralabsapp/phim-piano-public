@@ -4,7 +4,7 @@
 
 This is an early-stage open-source application. Security fixes are developed on the current `main` branch; there is no separate supported long-term release series or guaranteed response time.
 
-Each deployment is responsible for its own hosting, Supabase project, OAuth configuration, access controls, and credentials. This repository does not provide a shared production backend. Public source code does not authorize testing someone else's deployment or database.
+Each deployment is responsible for its own hosting, Firebase project, OAuth configuration, access controls, and credentials. This repository does not provide a shared production backend. Public source code does not authorize testing someone else's deployment or database.
 
 ## Report a vulnerability privately
 

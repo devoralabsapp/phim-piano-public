@@ -2,7 +2,7 @@ import ThemeSwitcher from "./components/ThemeSwitcher";
 import { appName } from "./lib/brand";
 import { useLanguage } from "./lib/i18n";
 import { useEffect, useRef, useState } from "react";
-import type { User } from "@supabase/supabase-js";
+import type { AuthUser } from "./lib/auth";
 import {
   Home,
   BookOpen,
@@ -33,13 +33,7 @@ import { type MidiMessage } from "./components/RhythmTrainer";
 import { libraryPieces } from "./lib/library";
 import { recommendLesson } from "./lib/practice";
 import { lessons, noteName } from "./lib/curriculum";
-import {
-  configured,
-  googleProviderEnabled,
-  installAuthLink,
-  signInGoogle,
-  supabase,
-} from "./lib/auth";
+import { configured, observeAuth, signOut, signInGoogle } from "./lib/auth";
 import { stats, localDay } from "./lib/domain";
 import { useProgress } from "./lib/useProgress";
 import {
@@ -92,16 +86,12 @@ const titles: Record<string, [string, string]> = {
 export default function App() {
   const { locale, t, dateLocale } = useLanguage();
   const [page, setPage] = useState("home"),
-    [user, setUser] = useState<User | null>(null),
+    [user, setUser] = useState<AuthUser | null>(null),
     [authReady, setAuthReady] = useState(!configured),
     [lessonId, setLessonId] = useState<string | null>(null),
     [daily, setDaily] = useState(false),
     [message, setMessage] = useState(""),
     [loginBusy, setLoginBusy] = useState(false),
-    [googleState, setGoogleState] = useState<
-      "checking" | "enabled" | "disabled" | "unavailable"
-    >("checking"),
-    [googleRetry, setGoogleRetry] = useState(0),
     [midiBusy, setMidiBusy] = useState(false),
     [midiEnabled, setMidiEnabled] = useState(false),
     [devices, setDevices] = useState<MidiDevice[]>([]),
@@ -112,72 +102,36 @@ export default function App() {
     seq = useRef(0),
     pressedKeys = useRef(new Set<number>()),
     authUserId = useRef<string | null>(null);
-  const progress = useProgress(authReady ? (user?.id ?? null) : null),
+  const progress = useProgress(authReady ? (user?.uid ?? null) : null),
     s = stats(progress.sessions);
   const allLessons = [...lessons, ...libraryPieces];
   const courseCompleted = lessons.filter((l) => s.completed.has(l.id)).length;
   const recommendation = recommendLesson(lessons, progress.sessions);
   const lesson = allLessons.find((l) => l.id === lessonId),
     next = lessons.find((l) => !s.completed.has(l.id)) ?? lessons[0];
-  useEffect(() => {
-    let cancelled = false;
-    let cleanup: (() => void) | undefined;
-    if (supabase) {
-      supabase.auth.getSession().then(({ data, error }) => {
-        if (cancelled) return;
-        if (error)
+  useEffect(
+    () =>
+      observeAuth(
+        (nextUser) => {
+          const nextId = nextUser?.uid ?? null;
+          if (authUserId.current !== nextId) {
+            setLessonId(null);
+            setDaily(false);
+          }
+          authUserId.current = nextId;
+          setUser(nextUser);
+          setLoginBusy(false);
+          setAuthReady(true);
+          if (location.pathname === "/auth/callback")
+            history.replaceState({}, "", "/");
+        },
+        () => {
           setMessage("Không khôi phục được đăng nhập. Hãy đăng nhập lại.");
-        authUserId.current = data.session?.user.id ?? null;
-        setUser(data.session?.user ?? null);
-        setAuthReady(true);
-        if (location.pathname === "/auth/callback")
-          history.replaceState({}, "", "/");
-      });
-      const { data } = supabase.auth.onAuthStateChange((_event, session) => {
-        if (cancelled) return;
-        const nextId = session?.user.id ?? null;
-        if (authUserId.current !== nextId) {
-          setLessonId(null);
-          setDaily(false);
-        }
-        authUserId.current = nextId;
-        setUser(session?.user ?? null);
-        setLoginBusy(false);
-        setAuthReady(true);
-      });
-      cleanup = () => data.subscription.unsubscribe();
-    }
-    let linkCleanup: (() => void) | undefined;
-    void installAuthLink(setMessage).then((fn) => {
-      if (cancelled) fn();
-      else linkCleanup = fn;
-    });
-    return () => {
-      cancelled = true;
-      cleanup?.();
-      linkCleanup?.();
-    };
-  }, []);
-  useEffect(() => {
-    if (!configured || page !== "settings" || user) return;
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
-    let active = true;
-    setGoogleState("checking");
-    void googleProviderEnabled(controller.signal)
-      .then((enabled) => {
-        if (active) setGoogleState(enabled ? "enabled" : "disabled");
-      })
-      .catch(() => {
-        if (active) setGoogleState("unavailable");
-      })
-      .finally(() => clearTimeout(timeout));
-    return () => {
-      active = false;
-      controller.abort();
-      clearTimeout(timeout);
-    };
-  }, [page, user, googleRetry]);
+          setAuthReady(true);
+        },
+      ),
+    [],
+  );
   useEffect(
     () => () => {
       void disconnect.current?.();
@@ -387,10 +341,10 @@ export default function App() {
           </div>
           <button className="profile" onClick={() => go("settings")}>
             <span className="avatar">
-              {(user?.user_metadata.full_name ?? t("Bạn")).slice(0, 1)}
+              {(user?.displayName ?? t("Bạn")).slice(0, 1)}
             </span>
             <span>
-              <b>{user?.user_metadata.full_name ?? t("Người yêu piano")}</b>
+              <b>{user?.displayName ?? t("Người yêu piano")}</b>
               <small>
                 {user ? t("Tài khoản của bạn") : t("Đang học ở chế độ khách")}
               </small>
@@ -707,7 +661,7 @@ export default function App() {
             )}
             {page === "practice" && (
               <SightReading
-                key={user?.id ?? "guest"}
+                key={user?.uid ?? "guest"}
                 midiMessages={midiMessages}
                 midiConnected={devices.length > 0}
                 pressed={pressed}
@@ -862,13 +816,10 @@ export default function App() {
                     <>
                       <div className="account-profile">
                         <span className="avatar large">
-                          {(user.user_metadata.full_name ?? "B").slice(0, 1)}
+                          {(user.displayName ?? "B").slice(0, 1)}
                         </span>
                         <div>
-                          <h3>
-                            {user.user_metadata.full_name ??
-                              t("Người yêu piano")}
-                          </h3>
+                          <h3>{user.displayName ?? t("Người yêu piano")}</h3>
                           <p className="muted">{user.email}</p>
                         </div>
                       </div>
@@ -884,9 +835,11 @@ export default function App() {
                       <button
                         className="text-button"
                         onClick={async () => {
-                          const { error } = await supabase!.auth.signOut();
-                          if (error)
+                          try {
+                            await signOut();
+                          } catch {
                             setMessage("Chưa đăng xuất được. Hãy thử lại.");
+                          }
                         }}
                       >
                         <LogOut size={15} />
@@ -903,9 +856,7 @@ export default function App() {
                       <button
                         className="google-button"
                         aria-label={t("Tiếp tục với Google")}
-                        disabled={
-                          loginBusy || !configured || googleState !== "enabled"
-                        }
+                        disabled={loginBusy || !configured}
                         onClick={() => void login()}
                       >
                         <span className="google-g">G</span>
@@ -919,27 +870,6 @@ export default function App() {
                             "Đăng nhập Google sẽ khả dụng khi hệ thống tài khoản được kết nối.",
                           )}
                         </p>
-                      )}
-                      {configured && googleState !== "enabled" && (
-                        <div className="small muted" role="status">
-                          <p>
-                            {t(
-                              googleState === "checking"
-                                ? "Đang kiểm tra đăng nhập…"
-                                : googleState === "disabled"
-                                  ? "Đăng nhập Google chưa được bật. Bạn vẫn có thể học ở chế độ khách."
-                                  : "Chưa kết nối được dịch vụ đăng nhập. Hãy thử lại.",
-                            )}
-                          </p>
-                          {googleState !== "checking" && (
-                            <button
-                              className="text-button"
-                              onClick={() => setGoogleRetry((x) => x + 1)}
-                            >
-                              {t("Kiểm tra lại đăng nhập")}
-                            </button>
-                          )}
-                        </div>
                       )}
                       <p className="small muted">
                         {t("Chế độ khách lưu tiến độ trên trình duyệt này.")}
@@ -1010,7 +940,7 @@ export default function App() {
       </main>
       {lesson && authReady && (
         <LessonPlayer
-          key={`${user?.id ?? "guest"}:${lesson.id}`}
+          key={`${user?.uid ?? "guest"}:${lesson.id}`}
           lesson={lesson}
           onSave={progress.add}
           onClose={() => setLessonId(null)}

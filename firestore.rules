@@ -1,0 +1,51 @@
+rules_version = '2';
+// Model: users/{uid}/sessions/{sessionId}; owner uid is encoded in the path.
+// Required: id/lesson_id strings <=128, started_at Timestamp (immutable),
+// nonnegative bounded integer counters, completed bool, input_mode enum.
+// Optional: assessment, a bounded map of rhythm/sight-reading/placement results.
+// No public profiles, emails, roles, credential data, or client deletes.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner(uid) { return request.auth != null && request.auth.uid == uid; }
+    function counter(n) { return n is int && n >= 0 && n <= 100000000; }
+    function percentage(n) { return n is number && n >= 0 && n <= 100; }
+    function validAssessment(a) {
+      return a is map
+        && a.keys().hasAll(['kind','bpm','pitchAccuracy','timingAccuracy','score','early','late','missed','extra','start','end','hand','input'])
+        && a.keys().hasOnly(['kind','bpm','pitchAccuracy','timingAccuracy','score','early','late','missed','extra','start','end','hand','input','readingLevel','durationAccuracy'])
+        && a.kind in ['rhythm','sight-reading','placement']
+        && a.bpm is number && a.bpm >= 40 && a.bpm <= 160
+        && percentage(a.pitchAccuracy) && percentage(a.timingAccuracy) && percentage(a.score)
+        && counter(a.early) && counter(a.late) && counter(a.missed) && counter(a.extra)
+        && counter(a.start) && counter(a.end) && a.end >= a.start
+        && a.hand in ['all','left','right'] && a.input in ['screen','midi','microphone']
+        && (!('readingLevel' in a) || a.readingLevel in [1,2,3])
+        && (!('durationAccuracy' in a) || percentage(a.durationAccuracy));
+    }
+    function validSession(d, id) {
+      return d.keys().hasAll(['id','lesson_id','started_at','active_seconds','correct_notes','wrong_notes','completed','input_mode'])
+        && d.keys().hasOnly(['id','lesson_id','started_at','active_seconds','correct_notes','wrong_notes','completed','input_mode','assessment'])
+        && d.id == id && id.matches('^[a-zA-Z0-9_-]{1,128}$')
+        && d.lesson_id is string && d.lesson_id.size() > 0 && d.lesson_id.size() <= 128
+        && d.started_at is timestamp
+        && d.started_at >= timestamp.date(1970,1,1)
+        && d.started_at <= request.time + duration.value(1,'d')
+        && counter(d.active_seconds) && counter(d.correct_notes) && counter(d.wrong_notes)
+        && d.completed is bool && d.input_mode in ['screen','midi','manual']
+        && (!('assessment' in d) || validAssessment(d.assessment));
+    }
+    match /users/{uid}/sessions/{id} {
+      allow read: if isOwner(uid);
+      allow create: if isOwner(uid) && validSession(request.resource.data, id);
+      allow update: if isOwner(uid) && validSession(request.resource.data, id)
+        && request.resource.data.started_at == resource.data.started_at
+        && request.resource.data.lesson_id == resource.data.lesson_id
+        && request.resource.data.active_seconds >= resource.data.active_seconds
+        && request.resource.data.correct_notes >= resource.data.correct_notes
+        && request.resource.data.wrong_notes >= resource.data.wrong_notes
+        && (!resource.data.completed || request.resource.data.completed);
+      allow delete: if false;
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

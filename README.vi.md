@@ -23,7 +23,7 @@ npm ci
 npm run dev
 ```
 
-Mở **http://localhost:5173**. Khi chưa có biến môi trường, ứng dụng chạy ở **chế độ khách** và lưu tiến độ trong trình duyệt. Không cần Supabase, Vercel hoặc tài khoản Google để học thử. Xóa dữ liệu trình duyệt có thể làm mất tiến độ khách; có chức năng xuất nhật ký JSON.
+Mở **http://localhost:5173**. Khi chưa có biến môi trường, ứng dụng chạy ở **chế độ khách** và lưu tiến độ trong trình duyệt. Không cần Firebase, Vercel hoặc tài khoản Google để học thử. Xóa dữ liệu trình duyệt có thể làm mất tiến độ khách; có chức năng xuất nhật ký JSON.
 
 ![Piano Sprout — giao diện tiếng Anh](docs/screenshots/piano-sprout.png)
 
@@ -40,24 +40,11 @@ Nền kem ấm, thẻ màu pastel, viền đen đậm và bóng đổ cứng. Ch
 - Đọc nhạc mới, đánh giá đầu vào, luyện/chấm tiết tấu và nhật ký tiến độ.
 - Buổi luyện 15 phút, máy đếm nhịp và video hoạt họa kỹ thuật.
 - Micro xử lý từng nốt trên thiết bị; app iOS có plugin CoreMIDI và AVAudioPlayer.
-- Google OAuth PKCE và đồng bộ tiến độ qua Supabase tùy chọn, có Row Level Security.
+- Google login qua Firebase Auth và đồng bộ tiến độ qua Firestore tùy chọn, phân quyền theo chủ tài khoản.
 
-## Google login và đồng bộ tiến độ — tùy chọn
+## Đăng nhập Google và đồng bộ tùy chọn
 
-```sh
-cp .env.example .env.local
-```
-
-Điền URL và anon/publishable key của **project Supabase do bạn sở hữu**:
-
-```dotenv
-VITE_SUPABASE_URL=
-VITE_SUPABASE_ANON_KEY=
-```
-
-Giữ trống cả hai biến để chạy chế độ khách. Không đưa service-role key, Google Client Secret, token quản trị hoặc mật khẩu vào biến `VITE_` vì chúng được bundle vào client. Không commit `.env.local`.
-
-Xem [cấu hình Supabase/Google/hosting](docs/SETUP.vi.md). SQL dành cho project mới ở `supabase/setup/new-project.sql`; chỉ chạy một lần trên project mới của bạn. Project đã có dữ liệu cần xem và áp dụng từng migration còn thiếu; không chạy lại script khởi tạo. Google OAuth cần cấu hình và kiểm tra bằng tài khoản của bạn.
+Xem [hướng dẫn Firebase](docs/FIREBASE.md). Tạo project riêng, bật Google trong Firebase Auth, cấu hình `.env.local` theo `.env.example`, tạo Firestore và triển khai Security Rules. Không commit thông tin cá nhân, admin key hoặc bản xuất tài khoản. Chế độ khách không cần Firebase.
 
 ## Build và kiểm thử
 
@@ -80,7 +67,7 @@ npm run ios:sync
 npm run ios:open
 ```
 
-Mở scheme **App**. Bundle ID trong bản public là mẫu `org.example.phimpiano`, Apple Team để trống. Chọn Team và bundle ID riêng của bạn trước khi cài thiết bị; xem [hướng dẫn iOS/MIDI/âm thanh](docs/IOS.vi.md). Callback OAuth mặc định vẫn là `com.phim.piano://auth/callback`, khác bundle ID theo chủ ý. Nếu tùy biến scheme, cập nhật đồng bộ auth, Info.plist và allowlist của Supabase.
+Mở scheme **App**. Bundle ID trong bản public là mẫu `org.example.phimpiano`, Apple Team để trống. Chọn Team và bundle ID riêng của bạn trước khi cài thiết bị; xem [hướng dẫn iOS/MIDI/âm thanh](docs/IOS.vi.md). Scheme cũ `com.phim.piano` vẫn được giữ. Firebase Google login thêm scheme đảo client ID từ plist iOS riêng; xem [hướng dẫn Firebase](docs/FIREBASE.md#ios).
 
 ```sh
 swift test --package-path native/MidiParser

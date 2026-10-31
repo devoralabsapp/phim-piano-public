@@ -34,3 +34,10 @@ marketing/tiktok/*.mp4
 # Private deployment metadata and personal handover notes
 .openai/
 docs/LOCAL-HANDOVER.md
+
+# Firebase local state and platform configuration
+.firebase/
+*-debug.log
+ios/App/App/GoogleService-Info.plist
+ios/App/CapApp-SPM/symlinks/
+ios/App/App.xcodeproj/project.xcworkspace/contents.xcworkspacedata

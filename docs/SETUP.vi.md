@@ -1,3 +1,5 @@
+> **Cập nhật backend:** Firebase Auth và Firestore thay Supabase. Xem [FIREBASE.md](FIREBASE.md) cho cấu hình hiện tại. Hướng dẫn Supabase bên dưới chỉ còn để đối chiếu lịch sử.
+
 [English](SETUP.md) | **Tiếng Việt**
 
 # Cấu hình tài khoản Google và triển khai

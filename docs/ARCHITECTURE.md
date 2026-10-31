@@ -12,10 +12,10 @@ The web UI runs locally or as a static single-page application. A Capacitor shel
 | Practice logic | `src/lib/practice.ts`, `training.ts`, `pitch.ts` | Timing, assessment, pitch detection |
 | Sound/MIDI | `src/lib/audio.ts`, `native-audio.ts`, `midi.ts` | Browser/native playback and input adapters |
 | Progress | `src/lib/domain.ts`, `storage.ts`, `useProgress.ts` | Validation, local storage, merge/deduplication, optional sync |
-| Auth | `src/lib/auth.ts` | Optional Supabase client, Google PKCE, native callback |
+| Auth | `src/lib/auth.ts` | Optional Firebase client, Google login, native callback |
 | iOS | `ios/App/App/` | CoreMIDI, AVAudioPlayer, share/export, app lifecycle |
 | Native unit packages | `native/MidiParser/`, `native/PianoAudio/` | Parser and PCM checks without a device |
-| Database | `supabase/migrations/`, `setup/` | Session schema, ownership policies and privileges |
+| Database | `firestore.rules`, `firebase.json` | Owner-scoped sessions and schema validation |
 
 ## Appearance themes
 
@@ -27,9 +27,9 @@ To add a theme, register its ID in the catalog and bootstrap allowlist, add scop
 
 ## Data flow
 
-Guest sessions are stored separately from each authenticated user's local history. Supabase sync runs only when configured and signed in; the database must enforce ownership through RLS. Guest progress is imported by explicit user action, not silently merged across accounts. Stable IDs and deterministic merging prevent duplicate imports.
+Guest sessions are stored separately from each authenticated user's local history. Firebase sync runs only when configured and signed in; the database must enforce ownership through Firestore Security Rules. Guest progress is imported by explicit user action, not silently merged across accounts. Stable IDs and deterministic merging prevent duplicate imports.
 
-Google login uses PKCE. Web redirects return to the current origin's `/auth/callback`; native redirects use `com.phim.piano://auth/callback`. Client environment variables are bundled into the app and must never hold administrator secrets.
+Google login uses Firebase Auth popups on web and a native Google credential on iOS. The old `com.phim.piano` scheme is retained alongside Google's reversed client ID scheme. Client environment variables are bundled into the app and must never hold administrator secrets.
 
 Microphone pitch detection processes samples on the device rather than uploading recordings. Screen keys and web playback use browser audio; iOS playback uses AVAudioPlayer with synthesized PCM notes. MIDI note-on/off events feed the practice logic, and device latency affects rhythm feedback.
 
@@ -42,3 +42,5 @@ Real-device sound routes, permission prompts, microphone behavior, USB cabling, 
 ## What is not included
 
 No shared production credentials, hosted database account, payment/Premium system, teacher assessment, or automatic OpenAI API integration is part of the public repository. AI coding tools may assist development; the application itself does not require Codex or an OpenAI API key.
+
+See [Firebase configuration](FIREBASE.md) for the active backend and emulator tests. SQL migrations in `supabase/` are historical.

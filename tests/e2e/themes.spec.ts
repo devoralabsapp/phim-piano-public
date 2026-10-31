@@ -138,7 +138,7 @@ test("saved appearance is applied before React starts", async ({ page }) => {
   await page.addInitScript(() =>
     localStorage.setItem("piano-sprout:theme", "playful-retro"),
   );
-  await page.route("**/src/main.tsx", (route) => route.abort());
+  await page.route(/\/src\/main\.tsx(?:\?.*)?$/, (route) => route.abort());
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute(
     "data-theme",
