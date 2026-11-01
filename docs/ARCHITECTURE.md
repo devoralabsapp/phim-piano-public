@@ -43,4 +43,4 @@ Real-device sound routes, permission prompts, microphone behavior, USB cabling, 
 
 No shared production credentials, hosted database account, payment/Premium system, teacher assessment, or automatic OpenAI API integration is part of the public repository. AI coding tools may assist development; the application itself does not require Codex or an OpenAI API key.
 
-See [Firebase configuration](FIREBASE.md) for the active backend and emulator tests. SQL migrations in `supabase/` are historical.
+See [Firebase configuration](FIREBASE.md) for the active backend and emulator tests.

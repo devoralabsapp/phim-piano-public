@@ -14,7 +14,7 @@ Thanks for helping make piano practice more accessible. Contributions are welcom
 - `src/components/`: React interface and practice flows.
 - `src/lib/`: musical content, localization, timing, audio, pitch detection, storage, and optional authentication/sync.
 - `tests/`: unit tests and browser scenarios; `native/`: isolated Swift parser/audio packages.
-- `ios/`: native app and plugins; `supabase/`: schema and Firestore Security Rules policies for your own backend.
+- `ios/`: native app and plugins; `firestore.rules` and `firestore.indexes.json`: access rules and indexes for your own backend.
 
 ## Make a focused change
 

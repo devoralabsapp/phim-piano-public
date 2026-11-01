@@ -1,9 +1,0 @@
-# Example Auth settings for your own Supabase project. No shared production backend.
-project_id = "piano-sprout"
-
-[auth]
-site_url = "http://localhost:5173"
-additional_redirect_urls = [
-  "http://localhost:5173/auth/callback",
-  "com.phim.piano://auth/callback"
-]

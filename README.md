@@ -46,7 +46,7 @@ A warm cream canvas, pastel cards, bold outlines, and hard offset shadows. Selec
 
 Create your own Firebase project, enable Google in Firebase Authentication, and create a Firestore database. Copy `.env.example` to `.env.local` and supply your Firebase Web app configuration. Set `VITE_FIREBASE_DATABASE_ID` to your database ID, deploy the checked-in rules, and authorize your web domain in Firebase Auth.
 
-See [Firebase setup and migration](docs/FIREBASE.md) for environment variables, Security Rules, Vercel, iOS Google login, emulator tests, and moving an existing deployment. Never put service-account credentials in client code or commit personal config/user exports. Guest practice works without any cloud configuration.
+See [Firebase setup](docs/FIREBASE.md) for environment variables, Security Rules, Vercel, iOS Google login, emulator tests. Never put service-account credentials in client code or commit personal config/user exports. Guest practice works without any cloud configuration.
 
 ## Build and test
 

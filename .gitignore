@@ -16,7 +16,6 @@ xcuserdata/
 native/MidiParser/.build/
 artifacts/
 
-supabase/.temp/
 
 native/PianoAudio/.build/
 

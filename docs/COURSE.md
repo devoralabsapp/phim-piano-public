@@ -24,5 +24,3 @@ The **music library** has 10 practice pieces with source/composer information. S
 The **practice room** includes animated technique guides, four-bar sight-reading at three levels, and a placement assessment. Recommendations use recent practice results. They are not certificate grades or a teacher's performance assessment. Technique exercises require learners to listen and adjust their own playing.
 
 Microphone input detects one note at a time in C2–C7 and processes it locally without recording/uploading audio. It releases the stream when changing input, closing practice, or entering the background. Use MIDI for chords and headphones to reduce click/background interference. Microphone rhythm feedback is approximate.
-
-Databases created before the course expansion need the missing `202610140002_extended_course.sql` and `202610140003_practice_assessments.sql` migrations to accept the newer lesson IDs. Preserve the Row Level Security policies.

@@ -1,5 +1,3 @@
-> **Backend update:** Firebase Auth and Firestore replace Supabase. Follow [FIREBASE.md](FIREBASE.md) for current backend and native Google sign-in setup. Any Supabase instructions below are historical.
-
 # Run Piano Sprout on iPad or iPhone with Xcode
 
 **English** | [Tiếng Việt](IOS.vi.md)
@@ -12,7 +10,7 @@ Project: `ios/App/App.xcodeproj`; scheme: **App**; minimum iOS: 15.0. Web assets
 2. Run `npm ci`. If you want cloud features, configure `.env.local` using [SETUP.md](SETUP.md). Run `npm run ios:sync`.
 3. Run `npm run ios:open` or open the project directly.
 4. In Signing & Capabilities, choose your Apple Team and automatic signing. Replace the sample bundle ID `org.example.phimpiano` in both `capacitor.config.ts` and the Xcode target with your own ID.
-5. Keep the OAuth scheme `com.phim.piano` unless you also update the auth code, Info.plist, and Supabase allowlist. Its callback is `com.phim.piano://auth/callback`; it intentionally differs from the bundle ID.
+5. Preserve the existing `com.phim.piano` URL scheme. Firebase Google login adds the reversed client ID from your ignored plist; see [Firebase iOS setup](FIREBASE.md#ios).
 6. Connect your device, enable Developer Mode when requested, select it, and Run. Personal Apple accounts have signing limitations; TestFlight requires Apple Developer Program membership.
 7. After web or environment changes, run `npm run ios:sync` before rebuilding.
 

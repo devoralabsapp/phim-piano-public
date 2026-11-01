@@ -1,5 +1,3 @@
-> **Cập nhật backend:** Firebase Auth và Firestore thay Supabase. Xem [FIREBASE.md](FIREBASE.md) cho cấu hình hiện tại. Hướng dẫn Supabase bên dưới chỉ còn để đối chiếu lịch sử.
-
 [English](IOS.md) | **Tiếng Việt**
 
 # Chạy Piano Sprout trên iPad/iPhone từ Xcode
@@ -11,7 +9,7 @@ Dự án: `ios/App/App.xcodeproj`. Bundle ID: `org.example.phimpiano`; iOS tối
 1. Cài Xcode phù hợp với phiên bản iOS trên iPad/iPhone của bạn và Node.js 22.12 trở lên.
 2. Trong thư mục repo, chạy `npm ci`, cấu hình `.env.local` như `docs/SETUP.md`, rồi `npm run ios:sync`.
 3. Chạy `npm run ios:open` hoặc mở `ios/App/App.xcodeproj`.
-4. Xcode → App target → Signing & Capabilities: chọn Team Apple của bạn, bật Automatically manage signing. Thay Bundle Identifier mẫu `org.example.phimpiano` bằng ID riêng của bạn; cập nhật đồng thời `capacitor.config.ts` và target Xcode. URL scheme OAuth vẫn là `com.phim.piano` trừ khi đổi đồng thời trong mã auth và Supabase allowlist.
+4. Xcode → App target → Signing & Capabilities: chọn Team Apple của bạn, bật Automatically manage signing. Thay Bundle Identifier mẫu `org.example.phimpiano` bằng ID riêng của bạn; cập nhật đồng thời `capacitor.config.ts` và target Xcode. Giữ URL scheme `com.phim.piano`; Firebase Google login bổ sung reversed client ID từ plist riêng theo [FIREBASE.md](FIREBASE.md#ios).
 5. Cắm iPad/iPhone vào Mac, bật Developer Mode khi iOS yêu cầu, chọn thiết bị và Run. Tài khoản Apple cá nhân có giới hạn thời hạn signing; phát hành TestFlight cần Apple Developer Program.
 6. Khi sửa web hoặc đổi biến môi trường, chạy `npm run ios:sync` trước khi build lại.
 

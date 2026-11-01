@@ -1,5 +1,4 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
 import { lessons, eventPitches, type Note } from "../src/lib/curriculum";
 import { libraryPieces } from "../src/lib/library";
 import {
@@ -223,16 +222,12 @@ describe("library and notation", () => {
         if (/[À-ỹ]/.test(s)) expect(Object.hasOwn(english, s), s).toBe(true);
     }
   });
-  it("keeps migrations compatible with every saved exercise ID", () => {
-    const sql = readFileSync(
-      "supabase/migrations/202610140003_practice_assessments.sql",
-      "utf8",
-    );
+  it("accepts saved progress for every course, library and practice exercise", () => {
     for (const id of [...lessons, ...libraryPieces]
-      .map((l) => l.id)
-      .concat(["placement", "sight-reading", "daily"]))
-      expect(sql).toContain(`'${id}'`);
-    expect(sql).toContain("add column if not exists assessment jsonb");
+      .map((lesson) => lesson.id)
+      .concat(["placement", "sight-reading", "daily"])) {
+      expect(validSession({ ...session, lesson_id: id }), id).toBe(true);
+    }
   });
   it("positions natural, sharp and flat notes on the appropriate staff degree", () => {
     expect(staffPosition(64, "treble")).toBe(132);

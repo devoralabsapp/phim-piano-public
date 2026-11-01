@@ -1,4 +1,4 @@
-# Firebase setup and migration
+# Firebase setup
 
 Piano Sprout uses **Firebase Authentication (Google)** and **Cloud Firestore**. Vercel remains the web host. Guest practice works without a cloud account, and progress remains in local storage. No Firebase Analytics, Storage, Functions, or paid integrations are required.
 
@@ -35,13 +35,3 @@ npm run test:firebase
 ```
 
 `test:firebase` starts Auth/Firestore emulators, exercises ownership and validation rules, then browser sign-in/sync/account-isolation flows. `test:auth` alone requires those emulators to already be running. Emulator support is gated to development builds on localhost; production builds cannot enable it.
-
-## Moving an existing Supabase deployment
-
-1. Export the old database sessions and verified Google identities into a private, access-restricted backup. Do not commit user data or auth exports.
-2. Before allowing Firebase login, import verified Google provider identities into Firebase Auth with the **same UID** as the old Supabase user UUID. Match by Google's stable provider subject, not by a client-supplied email. Check for preexisting Firebase accounts/UID collisions first. Do not overwrite an existing account without an explicit mapping/review.
-3. Write each validated session into the corresponding UID's subcollection with a Timestamp. Strip SQL-only `user_id`/`created_at` fields, preserve session IDs and assessment results, and verify every field against the backup.
-4. Verify rules, auth domains, provider configuration and deployment variables before switching the site. Users must sign in again; Supabase access/refresh tokens cannot become Firebase sessions. Existing `phim:sessions:{uid}` keys continue to work when UIDs are preserved. Guest import remains explicit.
-5. Keep the old backend/backup until real sign-in and cross-device sync are verified. This repository never deletes an old project automatically. Historical SQL migrations in `supabase/` are retained for reference and rollback; the runtime no longer depends on Supabase.
-
-If source data is unavailable, do not claim it was migrated. Preserve device exports and obtain a verified server-side identity mapping before importing any former account's history. A browser must never auto-import arbitrary other account caches.

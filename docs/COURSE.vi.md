@@ -24,5 +24,3 @@ Khuông nhạc hỗ trợ khóa Sol/Fa, dấu thăng/giáng, độ dài nốt, d
 **Phòng luyện tập** có video minh họa ngón, bài đọc nhạc mới bốn ô nhịp ở ba mức và đánh giá đầu vào. Gợi ý bài dựa trên kết quả gần đây; đánh giá này không tương đương cấp thi chứng chỉ hay đánh giá biểu diễn của giáo viên. Bài kỹ thuật cần người học tự nghe và điều chỉnh chất lượng chơi.
 
 Micro nhận giai điệu một nốt mỗi lần C2–C7, xử lý trên thiết bị. Chỉ xin quyền khi bật; dừng và giải phóng micro khi đổi nguồn, đóng bài hoặc ứng dụng vào nền. Không thu/tải âm thanh. Hợp âm cần MIDI; tiếng click/âm nền có thể làm nhận sai, nên dùng tai nghe. Sai lệch nhịp micro chỉ tham khảo.
-
-Database đã tạo trước bản mở rộng cần chạy `supabase/migrations/202610140002_extended_course.sql` và `supabase/migrations/202610140003_practice_assessments.sql` để lưu các ID bài mới. Không thay đổi chính sách Row Level Security.

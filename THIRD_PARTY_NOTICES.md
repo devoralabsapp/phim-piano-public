@@ -1,6 +1,6 @@
 # Third-party notices
 
-Dependencies are not relicensed by this repository. Their original license notices and terms continue to apply. Consult the package metadata and LICENSE files for the versions pinned in package-lock.json, including React, Vite, TypeScript, Capacitor, Supabase JS, Lucide, Vitest, and Playwright.
+Dependencies are not relicensed by this repository. Their original license notices and terms continue to apply. Consult the package metadata and LICENSE files for the versions pinned in package-lock.json, including React, Vite, TypeScript, Capacitor, Firebase JS and the Capacitor Firebase Authentication plugin, Lucide, Vitest, and Playwright.
 
 The optional Google Fonts stylesheet requests Be Vietnam Pro from Google Fonts; the app falls back to system fonts when unavailable. Font licenses apply to the fonts separately.
 

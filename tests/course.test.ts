@@ -1,5 +1,4 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
 import {
   lessons,
   eventPitches,
@@ -44,15 +43,10 @@ describe("expanded course", () => {
     expect(scientificName(58, true)).toBe("B♭3");
     expect(beatLabel("en", 2 / 3)).toBe("⅔ beats");
   });
-  it("keeps the extended database constraint in sync with the course", () => {
-    const migration = readFileSync(
-      "supabase/migrations/202610140002_extended_course.sql",
-      "utf8",
-    );
-    const ids = [...migration.matchAll(/'([a-z-]+)'/g)].map((m) => m[1]);
-    expect(new Set(ids)).toEqual(
-      new Set([...lessons.map((l) => l.id), "daily"]),
-    );
+  it("uses unique stable lesson IDs suitable for saved progress", () => {
+    const ids = lessons.map((lesson) => lesson.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const id of ids) expect(id).toMatch(/^[a-z0-9-]{1,128}$/);
   });
   it("keeps the 3:2 attack positions and 3/4 accompaniment mathematically consistent", () => {
     const poly = lessons.find((l) => l.id === "three-against-two")!;
